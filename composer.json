@@ -1,0 +1,39 @@
+{
+    "name": "lin3s/wp-helpers",
+    "description": "Helper classes for building Wordpress theme in the LIN3S way",
+    "keywords": ["lin3s", "wordpress", "helpers"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "LIN3S",
+            "email": "info@lin3s.com",
+            "homepage": "https://lin3s.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "LIN3S\\WPHelpers\\": "src/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://wpackagist.org"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+
+        "wordpress": "~4.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*"
+    },
+    "suggest": {
+        "wpackagist-plugin/simple-fields": "It allows to implement in an easy way all the logic about fields",
+        "wpackagist-plugin/timber-library": "It allows to use Twig template engine with other useful functions into Wordpress",
+        "template-selector": "It allows manage the custom templates into Wordpress administration panel",
+        "lin3s/wp-routing": "It allows to use a Symfony style routing for Wordpress"
+    }
+}
