@@ -11,11 +11,6 @@
             "homepage": "https://lin3s.com"
         }
     ],
-    "autoload": {
-        "psr-4": {
-            "LIN3S\\WPFoundation\\": "src/"
-        }
-    },
     "repositories": [
         {
             "type": "composer",
@@ -24,6 +19,20 @@
     ],
     "require": {
         "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "LIN3S\\WPFoundation\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "spec\\LIN3S\\WPFoundation\\": "spec/",
+            "Fixtures\\LIN3S\\WPFoundation\\": "spec/fixtures/"
+        }
     },
     "suggest": {
         "wpackagist-plugin/simple-fields": "It allows to implement in an easy way all the logic about fields",
