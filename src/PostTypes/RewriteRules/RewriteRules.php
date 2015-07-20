@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the WP Helpers library.
+ * This file is part of the WPFoundation library.
  *
  * Copyright (c) 2015 LIN3S <info@lin3s.com>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace LIN3S\WPHelpers\PostTypes\RewriteRules;
+namespace LIN3S\WPFoundation\PostTypes\RewriteRules;
 
 /**
  * Abstract class of base rewrite rules that implements the interface.
