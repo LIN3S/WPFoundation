@@ -29,12 +29,12 @@ $ composer require lin3s/wp-foundation
 The following code snippets are representative code samples of how can it use this library:
 
 1. Configuration
-  * [Assets](#Assets)
-  * [Theme](#Theme)
+  * [Assets](#assets)
+  * [Theme](#theme)
 2. PostTypes
-  * [PostType](#PostType)
-  * [Fields](#Fields)
-  * [RewriteRules](#RewriteRules)
+  * [PostType](#posttype)
+  * [Fields](#fields)
+  * [RewriteRules](#rewriterules)
 
 
 ### Assets
