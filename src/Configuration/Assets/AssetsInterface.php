@@ -12,8 +12,8 @@
 namespace LIN3S\WPFoundation\Configuration\Assets;
 
 /**
- * Interface of assets class. This interface forces to instantiate all the
- * theme classes, to add all the templates and initialize the context.
+ * Interface of assets class. This interface forces to register
+ * all the scripts and stylesheet under assets method.
  *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
