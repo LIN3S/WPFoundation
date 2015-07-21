@@ -1,10 +1,9 @@
 # Wordpress Foundation
 > Helper classes for building Wordpress theme in the LIN3S way.
 
-[![Build Status](https://travis-ci.org/LIN3S/WPFoundation.svg?branch=master)](https://travis-ci.org/LIN3S/WPFoundation)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LIN3S/WPFoundation/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/LIN3S/WPFoundation/?branch=master)[![HHVM Status](http://hhvm.h4cc.de/badge/lin3s/wp-foundation.svg)](http://hhvm.h4cc.de/package/lin3s/wp-foundation)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LIN3S/WPFoundation/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/LIN3S/WPFoundation/?branch=master)
 [![Total Downloads](https://poser.pugx.org/lin3s/wp-foundation/downloads)](https://packagist.org/packages/lin3s/wp-foundation)
-
+&nbsp;&nbsp;&nbsp;&nbsp;
 [![Latest Stable Version](https://poser.pugx.org/lin3s/wp-foundation/v/stable.svg)](https://packagist.org/packages/lin3s/wp-foundation)
 [![Latest Unstable Version](https://poser.pugx.org/lin3s/wp-foundation/v/unstable.svg)](https://packagist.org/packages/lin3s/wp-foundation)
 
