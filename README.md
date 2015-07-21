@@ -28,12 +28,15 @@ The following code snippets are representative code samples of how can it use th
 
 1. Configuration
   * [Assets](#assets)
+  * [Menus](#menus)
   * [Theme](#theme)
 2. PostTypes
   * [PostType](#posttype)
   * [Fields](#fields)
   * [RewriteRules](#rewriterules)
-
+3. Widgets
+  * [Widget](#widget)
+  * [Areas](#areas)
 
 ### Assets
     (...)
@@ -70,6 +73,26 @@ The following code snippets are representative code samples of how can it use th
             } else {
                 $this->addScript('app.min', self::BUILD_JS, ['jquery', 'jquery.counterup', 'sidr']);
             }
+        }
+    }
+
+### Menus
+    (...)
+
+    use LIN3S\WPFoundation\Configuration\Menus\Menus as BaseMenus;
+
+    class Menus extends BaseMenus
+    {
+        const MENU_AWESOME = 'awesome-menu';
+    
+        /**
+         * {@inheritdoc}
+         */
+        public function menus()
+        {
+             register_nav_menus([
+                 self::MENU_AWESOME => 'Awesome menu'
+             ]);
         }
     }
 
@@ -356,6 +379,93 @@ The following code snippets are representative code samples of how can it use th
         }
     }
 
+### Widget
+    (...)
+
+    use LIN3S\WPFoundation\Widgets\Widget;
+
+    class SocialNetworksWidget extends Widget
+    {
+        /**
+         * {@inheritdoc}
+         */
+        public function widget($args, $instance)
+        {
+            $data = [
+                'beforeWidget' => $args['before_widget'],
+                'afterWidget'  => $args['after_widget'],
+                'beforeTitle'  => $args['before_title'],
+                'afterTitle'   => $args['after_title'],
+                'twitterUrl'   => (!empty($instance['twitterUrl'])) ? strip_tags($instance['twitterUrl']) : '',
+                'facebookUrl'  => (!empty($instance['facebookUrl'])) ? strip_tags($instance['facebookUrl']) : '',
+                'pinterestUrl' => (!empty($instance['pinterestUrl'])) ? strip_tags($instance['pinterestUrl']) : '',
+                'youtubeUrl'   => (!empty($instance['youtubeUrl'])) ? strip_tags($instance['youtubeUrl']) : '',
+                'rssUrl'       => (!empty($instance['rssUrl'])) ? strip_tags($instance['rssUrl']) : '',
+            ];
+    
+            return Timber::render('widgets/front/socialNetworks.twig', $data);
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function form($instance)
+        {
+            $instance['widgetNumber'] = $this->number();
+            $instance['widgetName'] = $this->name();
+
+            return Timber::render('widgets/admin/socialNetworks.twig', $instance);
+        }
+    
+        /**
+         * {@inheritdoc}
+         */
+        public function update($newInstance)
+        {
+            $instance = [
+                'twitterUrl'   => (!empty($newInstance['twitterUrl'])) ? strip_tags($newInstance['twitterUrl']) : '',
+                'facebookUrl'  => (!empty($newInstance['facebookUrl'])) ? strip_tags($newInstance['facebookUrl']) : '',
+                'pinterestUrl' => (!empty($newInstance['pinterestUrl'])) ? strip_tags($newInstance['pinterestUrl']) : '',
+                'youtubeUrl'   => (!empty($newInstance['youtubeUrl'])) ? strip_tags($newInstance['youtubeUrl']) : '',
+                'rssUrl'       => (!empty($newInstance['rssUrl'])) ? strip_tags($newInstance['rssUrl']) : '',
+            ];
+
+            return $instance;
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function register()
+        {
+            register_widget('\MyAwesomeProject\Widgets\SocialNetworksWidget');
+        }
+    }
+
+### Areas
+    (...)
+
+    use LIN3S\WPFoundation\Widgets\Areas\WidgetArea;
+
+    class CustomWidgetArea extends WidgetArea
+    {
+        /**
+         * {@inheritdoc}
+         */
+        public function widgetArea()
+        {
+            register_sidebar([
+                'name'          => 'Custom widgets',
+                'id'            => 'custom-widgets',
+                'before_widget' => '<section class="custom-widget">',
+                'after_widget'  => '</section>',
+                'before_title'  => '<h5>',
+                'after_title'   => '</h5>',
+            ]);
+        }
+    }
+
+    
 [1]: http://lin3s.com
 [2]: https://github.com/LIN3S/WordressStandard
 [3]: https://getcomposer.org/download/
