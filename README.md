@@ -481,7 +481,7 @@ class CustomWidgetArea extends WidgetArea
 
     
 [1]: http://lin3s.com
-[2]: https://github.com/LIN3S/WordressStandard
+[2]: https://github.com/LIN3S/WordpressStandard
 [3]: https://getcomposer.org/download/
 
 Licensing Options
