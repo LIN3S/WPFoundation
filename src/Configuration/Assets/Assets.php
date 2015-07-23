@@ -25,18 +25,25 @@ abstract class Assets implements AssetsInterface
     public function __construct()
     {
         add_action('wp_enqueue_scripts', [$this, 'assets']);
-        add_action( 'admin_enqueue_scripts', [$this, 'adminAssets']);
+        add_action('admin_enqueue_scripts', [$this, 'adminAssets']);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function adminAssets()
+    {
     }
 
     /**
      * Method that wraps the Wordpress internal "wp_enqueue_script"
      * simplifying the process adding some common default values.
      *
-     * @param string $name         The name of asset
-     * @param string $from         The from location, by default is the JS files default location
-     * @param array  $dependencies Array which contains the dependencies of the given asset, by default jQuery
-     * @param string $version      The version, by default is "1.0.0"
-     * @param bool   $inFooter     Checks if the asset is going to be in the footer or not, by default is "true"
+     * @param string $name The name of asset
+     * @param string $from The from location, by default is the JS files default location
+     * @param array $dependencies Array which contains the dependencies of the given asset, by default jQuery
+     * @param string $version The version, by default is "1.0.0"
+     * @param bool $inFooter Checks if the asset is going to be in the footer or not, by default is "true"
      *
      * @return $this Self class instance
      */
@@ -57,11 +64,11 @@ abstract class Assets implements AssetsInterface
      * Method that wraps the Wordpress internal "wp_enqueue_style"
      * simplifying the process adding some common default values.
      *
-     * @param string $name         The name of asset
-     * @param string $from         The from location, by default is the CSS files default location
-     * @param array  $dependencies Array which contains the dependencies of the given asset, by default is empty
-     * @param string $version      The version, by default is "1.0.0"
-     * @param string $media        The media, by default is "all"
+     * @param string $name The name of asset
+     * @param string $from The from location, by default is the CSS files default location
+     * @param array $dependencies Array which contains the dependencies of the given asset, by default is empty
+     * @param string $version The version, by default is "1.0.0"
+     * @param string $media The media, by default is "all"
      *
      * @return $this Self class instance
      */
@@ -81,8 +88,8 @@ abstract class Assets implements AssetsInterface
     /**
      * Build dynamically the asset directory path with the given parameters.
      *
-     * @param string $from     The from location
-     * @param string $name     The filename without extension
+     * @param string $from The from location
+     * @param string $name The filename without extension
      * @param string $fileType The file type, by default is "js"
      *
      * @return string
