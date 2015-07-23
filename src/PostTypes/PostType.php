@@ -17,6 +17,7 @@ namespace LIN3S\WPFoundation\PostTypes;
  * Also, it comes with basic implementation of "permalink" method.
  *
  * @author Beñat Espiña <benatespina@gmail.com>
+ * @author Gorka Laucirica <gorka.lauzirika@gmail.com>
  */
 abstract class PostType implements PostTypeInterface
 {

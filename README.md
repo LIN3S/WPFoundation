@@ -75,6 +75,14 @@ class Assets extends BaseAssets
             $this->addScript('app.min', self::BUILD_JS, ['jquery', 'jquery.counterup', 'sidr']);
         }
     }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function adminAssets()
+    {
+        //Add here your admin assets
+    }
 }
 ```
 
@@ -120,9 +128,6 @@ class AwesomeTheme extends Theme
         new ImageSizes();
 
         new CustomPostType();
-
-        new IndexFields();
-        new CustomFields();
 
         new CustomRewriteRules();
 
@@ -242,6 +247,14 @@ class CustomPostType extends PostType
         }
 
         return $permalink;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function fields()
+    {
+        new YourFields();
     }
 
     /**
@@ -454,7 +467,7 @@ class SocialNetworksWidget extends Widget
 }
 ```
 
-### Areas
+### Widget Areas
 ```php
 (...)
 

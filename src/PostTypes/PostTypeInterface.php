@@ -16,6 +16,7 @@ namespace LIN3S\WPFoundation\PostTypes;
  * useful methods related with custom post type class, improving the consistency.
  *
  * @author Beñat Espiña <benatespina@gmail.com>
+ * @author Gorka Laucirica <gorka.lauzirika@gmail.com>
  */
 interface PostTypeInterface
 {
