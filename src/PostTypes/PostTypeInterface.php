@@ -43,6 +43,11 @@ interface PostTypeInterface
     public function permalink($permalink, $id = 0);
 
     /**
+     * Registers required fields by this post type.
+     */
+    public function fields();
+
+    /**
      * Static method that simplifies the process of getting all data from given post. The given
      * post can be an object but also, can be an array of posts. It's very useful to encapsulate all
      * the logic about get the simple fields data without polluting the controller.

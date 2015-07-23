@@ -25,6 +25,7 @@ abstract class Assets implements AssetsInterface
     public function __construct()
     {
         add_action('wp_enqueue_scripts', [$this, 'assets']);
+        add_action( 'admin_enqueue_scripts', [$this, 'adminAssets']);
     }
 
     /**

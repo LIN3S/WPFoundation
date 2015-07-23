@@ -29,4 +29,10 @@ interface AssetsInterface
      * It's a callback of Wordpress internal "wp_enqueue_scripts" method.
      */
     public function assets();
+
+    /**
+     * Registers all the scripts and stylesheet files used in wp-admin.
+     * It's a callback of Wordpress internal "admin_enqueue_scripts" method.
+     */
+    public function adminAssets();
 }
