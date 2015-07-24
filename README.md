@@ -36,7 +36,7 @@ The following code snippets are representative code samples of how can it use th
   * [RewriteRules](#rewriterules)
 3. Widgets
   * [Widget](#widget)
-  * [Areas](#widget-areas)
+  * [Widget Areas](#widget-areas)
 
 ### Assets
 ```php
