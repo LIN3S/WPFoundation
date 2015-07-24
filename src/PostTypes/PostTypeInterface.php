@@ -16,6 +16,7 @@ namespace LIN3S\WPFoundation\PostTypes;
  * useful methods related with custom post type class, improving the consistency.
  *
  * @author Beñat Espiña <benatespina@gmail.com>
+ * @author Gorka Laucirica <gorka.lauzirika@gmail.com>
  */
 interface PostTypeInterface
 {
@@ -41,6 +42,11 @@ interface PostTypeInterface
      * @return string Customized permalink
      */
     public function permalink($permalink, $id = 0);
+
+    /**
+     * Registers required fields by this post type.
+     */
+    public function fields();
 
     /**
      * Static method that simplifies the process of getting all data from given post. The given

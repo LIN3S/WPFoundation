@@ -17,6 +17,7 @@ namespace LIN3S\WPFoundation\PostTypes;
  * Also, it comes with basic implementation of "permalink" method.
  *
  * @author Beñat Espiña <benatespina@gmail.com>
+ * @author Gorka Laucirica <gorka.lauzirika@gmail.com>
  */
 abstract class PostType implements PostTypeInterface
 {
@@ -27,6 +28,7 @@ abstract class PostType implements PostTypeInterface
     {
         add_action('init', [$this, 'postType']);
         add_action('init', [$this, 'taxonomyType']);
+        add_action('init', [$this, 'fields'], 20);
 
         add_filter('post_type_link', [$this, 'permalink'], 1, 2);
     }
@@ -37,5 +39,20 @@ abstract class PostType implements PostTypeInterface
     public function permalink($permalink, $id = 0)
     {
         return $permalink;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function fields()
+    {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function serialize($postTypes)
+    {
+        return $postTypes;
     }
 }

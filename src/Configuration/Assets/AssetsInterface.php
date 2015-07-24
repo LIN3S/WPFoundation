@@ -16,6 +16,7 @@ namespace LIN3S\WPFoundation\Configuration\Assets;
  * all the scripts and stylesheet under assets method.
  *
  * @author Beñat Espiña <benatespina@gmail.com>
+ * @author Gorka Laucirica <gorka.lauzirika@gmail.com>
  */
 interface AssetsInterface
 {
@@ -29,4 +30,10 @@ interface AssetsInterface
      * It's a callback of Wordpress internal "wp_enqueue_scripts" method.
      */
     public function assets();
+
+    /**
+     * Registers all the scripts and stylesheet files used in wp-admin.
+     * It's a callback of Wordpress internal "admin_enqueue_scripts" method.
+     */
+    public function adminAssets();
 }

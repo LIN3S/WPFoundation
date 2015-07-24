@@ -36,7 +36,7 @@ The following code snippets are representative code samples of how can it use th
   * [RewriteRules](#rewriterules)
 3. Widgets
   * [Widget](#widget)
-  * [Areas](#areas)
+  * [Widget Areas](#widget-areas)
 
 ### Assets
 ```php
@@ -74,6 +74,15 @@ class Assets extends BaseAssets
         } else {
             $this->addScript('app.min', self::BUILD_JS, ['jquery', 'jquery.counterup', 'sidr']);
         }
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function adminAssets()
+    {
+        $this->addStylesheet('adminCss');
+        $this->addScript('adminScript');
     }
 }
 ```
@@ -120,9 +129,6 @@ class AwesomeTheme extends Theme
         new ImageSizes();
 
         new CustomPostType();
-
-        new IndexFields();
-        new CustomFields();
 
         new CustomRewriteRules();
 
@@ -242,6 +248,14 @@ class CustomPostType extends PostType
         }
 
         return $permalink;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function fields()
+    {
+        new YourFields();
     }
 
     /**
@@ -454,7 +468,7 @@ class SocialNetworksWidget extends Widget
 }
 ```
 
-### Areas
+### Widget Areas
 ```php
 (...)
 

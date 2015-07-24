@@ -16,6 +16,7 @@ namespace LIN3S\WPFoundation\Configuration\Assets;
  * This class avoids the use of callbacks in the constructor.
  *
  * @author Beñat Espiña <benatespina@gmail.com>
+ * @author Gorka Laucirica <gorka.lauzirika@gmail.com>
  */
 abstract class Assets implements AssetsInterface
 {
@@ -25,6 +26,14 @@ abstract class Assets implements AssetsInterface
     public function __construct()
     {
         add_action('wp_enqueue_scripts', [$this, 'assets']);
+        add_action('admin_enqueue_scripts', [$this, 'adminAssets']);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function adminAssets()
+    {
     }
 
     /**
