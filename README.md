@@ -36,7 +36,7 @@ The following code snippets are representative code samples of how can it use th
   * [RewriteRules](#rewriterules)
 3. Widgets
   * [Widget](#widget)
-  * [Areas](#areas)
+  * [Areas](#widget-areas)
 
 ### Assets
 ```php
@@ -81,7 +81,8 @@ class Assets extends BaseAssets
      */
     public function adminAssets()
     {
-        //Add here your admin assets
+        $this->addStylesheet('adminCss');
+        $this->addScript('adminScript');
     }
 }
 ```
