@@ -12,7 +12,6 @@
 namespace spec\LIN3S\WPFoundation\Widgets;
 
 use LIN3S\WordPressPhpSpecBridge\ObjectBehavior;
-use Prophecy\Argument;
 
 /**
  * Spec of Widget class.
