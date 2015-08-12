@@ -11,24 +11,22 @@
             "homepage": "https://lin3s.com"
         }
     ],
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "http://wpackagist.org"
-        }
-    ],
     "require": {
         "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpspec/phpspec":         "^2.2",
+        "lin3s/wp-phpspec-brigde": "^0.1.0"
     },
     "autoload": {
         "psr-4": {
             "LIN3S\\WPFoundation\\": "src/"
         }
     },
-    "suggest": {
-        "wpackagist-plugin/simple-fields": "It allows to implement in an easy way all the logic about fields",
-        "wpackagist-plugin/timber-library": "It allows to use Twig template engine with other useful functions into Wordpress",
-        "template-selector": "It allows manage the custom templates into Wordpress administration panel",
-        "lin3s/wp-routing": "It allows to use a Symfony style routing for Wordpress"
+    "autoload-dev": {
+        "psr-4": {
+            "spec\\LIN3S\\WPFoundation\\": "spec/",
+            "fixtures\\LIN3S\\WPFoundation\\": "spec/fixtures/"
+        }
     }
 }

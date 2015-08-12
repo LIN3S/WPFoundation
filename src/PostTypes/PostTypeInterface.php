@@ -21,15 +21,9 @@ namespace LIN3S\WPFoundation\PostTypes;
 interface PostTypeInterface
 {
     /**
-     * Builds the custom post type calling the Wordpress internal "register_post_type" method.
+     * Registers required fields by this post type.
      */
-    public function postType();
-
-    /**
-     * Only if the post type has a custom taxonomy type too, this method builds
-     * the taxonomy type calling the Wordpress internal "register_taxonomy" method.
-     */
-    public function taxonomyType();
+    public function fields();
 
     /**
      * Sometimes, the custom post type also needs has a custom permalink.
@@ -44,9 +38,14 @@ interface PostTypeInterface
     public function permalink($permalink, $id = 0);
 
     /**
-     * Registers required fields by this post type.
+     * Builds the custom post type calling the Wordpress internal "register_post_type" method.
      */
-    public function fields();
+    public function postType();
+
+    /**
+     * Registers required rewrite rules by this post type.
+     */
+    public function rewriteRules();
 
     /**
      * Static method that simplifies the process of getting all data from given post. The given
@@ -58,4 +57,10 @@ interface PostTypeInterface
      * @return array|Object Serialized given post type or post types
      */
     public static function serialize($postTypes);
+
+    /**
+     * Only if the post type has a custom taxonomy type too, this method builds
+     * the taxonomy type calling the Wordpress internal "register_taxonomy" method.
+     */
+    public function taxonomyType();
 }

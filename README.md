@@ -1,6 +1,8 @@
 # Wordpress Foundation
 > Helper classes for building Wordpress theme in the LIN3S way.
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/9d974f76-3f53-487b-b6ed-92d3b328a450/mini.png)](https://insight.sensiolabs.com/projects/9d974f76-3f53-487b-b6ed-92d3b328a450)
+[![Build Status](https://travis-ci.org/LIN3S/WPFoundation.svg?branch=master)](https://travis-ci.org/LIN3S/WPFoundation)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LIN3S/WPFoundation/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/LIN3S/WPFoundation/?branch=master)
 [![Total Downloads](https://poser.pugx.org/lin3s/wp-foundation/downloads)](https://packagist.org/packages/lin3s/wp-foundation)
 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -44,7 +46,7 @@ The following code snippets are representative code samples of how can it use th
 ```php
 (...)
 
-use LIN3S\WPFoundation\Configuration\Ajax\Ajax;
+use LIN3S\WPFoundation\Ajax\Ajax;
 
 class MyAwesomeAjax extends Ajax
 {

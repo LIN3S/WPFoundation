@@ -36,6 +36,13 @@ abstract class PostType implements PostTypeInterface
     /**
      * {@inheritdoc}
      */
+    public function fields()
+    {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function permalink($permalink, $id = 0)
     {
         return $permalink;
@@ -44,7 +51,7 @@ abstract class PostType implements PostTypeInterface
     /**
      * {@inheritdoc}
      */
-    public function fields()
+    public function rewriteRules()
     {
     }
 

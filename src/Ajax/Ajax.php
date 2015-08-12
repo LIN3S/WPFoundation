@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace LIN3S\WPFoundation\Configuration\Ajax;
+namespace LIN3S\WPFoundation\Ajax;
 
 /**
  * Abstract class of AJAX class that implements the interface.

@@ -14,19 +14,20 @@ namespace LIN3S\WPFoundation\PostTypes\Fields;
 /**
  * Interface of the base fields. This interface forces to implement some
  * useful methods related with custom fields class, improving the consistency.
- * It's very oriented to use with simple fields library.
  *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
 interface FieldsInterface
 {
     /**
-     * Builds the fields calling the Simple fields' "simple_fields_register_field_group" method.
+     * Builds the post type fields.
      */
     public function fields();
 
     /**
-     * Creates the fields connector and joins with the custom post type class.
+     * Joins fields created in the "fields" method with the custom post type class.
+     *
+     * @return mixed
      */
     public function connector();
 }

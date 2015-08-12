@@ -9,18 +9,21 @@
  * file that was distributed with this source code.
  */
 
-namespace LIN3S\WPFoundation\Ajax;
+namespace fixtures\LIN3S\WPFoundation;
+
+use LIN3S\WPFoundation\Widgets\Areas\WidgetArea as BaseWidgetArea;
 
 /**
- * Interface of AJAX class. This interface forces to implement the ajax
- * method which is a callback of Wordpress AJAX action.
+ * Dummy implementation of WidgetArea class for fixture purposes.
  *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
-interface AjaxInterface
+class WidgetArea extends BaseWidgetArea
 {
     /**
-     * The Wordpress AJAX process callback method.
+     * {@inheritdoc}
      */
-    public function ajax();
+    public function widgetArea()
+    {
+    }
 }
