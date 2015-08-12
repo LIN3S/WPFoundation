@@ -26,17 +26,45 @@ $ composer require lin3s/wp-foundation
 ## Usage examples
 The following code snippets are representative code samples of how can it use this library:
 
-1. Configuration
+1. Ajax
+  * [Ajax](#ajax)
+2. Configuration
   * [Assets](#assets)
   * [Menus](#menus)
   * [Theme](#theme)
-2. PostTypes
+3. PostTypes
   * [PostType](#posttype)
   * [Fields](#fields)
   * [RewriteRules](#rewriterules)
-3. Widgets
+4. Widgets
   * [Widget](#widget)
   * [Widget Areas](#widget-areas)
+
+### Ajax
+```php
+(...)
+
+use LIN3S\WPFoundation\Configuration\Ajax\Ajax;
+
+class MyAwesomeAjax extends Ajax
+{
+    /**
+     * {@inheritdoc}
+     */
+    protected $action = 'my_awesome_ajax';
+
+    /**
+     * {@inheritdoc}
+     */
+    public function ajax()
+    {
+        (...)
+
+        echo 'returning data'
+        die();
+    }
+}
+```
 
 ### Assets
 ```php
