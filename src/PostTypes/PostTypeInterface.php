@@ -59,6 +59,18 @@ interface PostTypeInterface
     public static function serialize($postTypes);
 
     /**
+     * Like custom post types, sometimes, the taxonomy also needs has a custom permalink.
+     * This is the responsibility of this method. It's a callback of "term_link" filter
+     * that offers manipulate the creation of taxonomy permalink.
+     *
+     * @param string $url      The url
+     * @param string $term     The term
+     *
+     * @return string Customized url
+     */
+    public function taxonomyPermalink($url, $term);
+
+    /**
      * Only if the post type has a custom taxonomy type too, this method builds
      * the taxonomy type calling the Wordpress internal "register_taxonomy" method.
      */

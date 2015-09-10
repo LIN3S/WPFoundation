@@ -67,4 +67,9 @@ class PostTypeSpec extends ObjectBehavior
     {
         $this->taxonomyType();
     }
+
+    function it_should_be_taxonomy_permalink()
+    {
+        $this->taxonomyPermalink('dummy-taxonomy-permalink', Argument::any())->shouldReturn('dummy-taxonomy-permalink');
+    }
 }

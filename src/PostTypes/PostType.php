@@ -31,6 +31,7 @@ abstract class PostType implements PostTypeInterface
         add_action('init', [$this, 'fields'], 20);
 
         add_filter('post_type_link', [$this, 'permalink'], 1, 2);
+        add_filter('term_link', [$this, 'taxonomyPermalink'], 1, 2);
     }
 
     /**
@@ -61,5 +62,13 @@ abstract class PostType implements PostTypeInterface
     public static function serialize($postTypes)
     {
         return $postTypes;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function taxonomyPermalink($url, $term)
+    {
+        return $url;
     }
 }
