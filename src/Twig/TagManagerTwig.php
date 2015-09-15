@@ -23,11 +23,21 @@ namespace LIN3S\WPFoundation\Twig;
  */
 class TagManagerTwig
 {
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
         add_action('twig_apply_filters', [$this, 'addFilter']);
     }
 
+    /**
+     * Callback of "twig_apply_filters" WordPress action.
+     *
+     * @param mixed $twig The twig environment instance
+     *
+     * @return mixed
+     */
     public function addFilter($twig)
     {
         $twig->addFunction(new \Twig_SimpleFunction('tagManager', [$this, 'tagManagerFunction']));
@@ -35,6 +45,13 @@ class TagManagerTwig
         return $twig;
     }
 
+    /**
+     * Callback of "tagManager" Twig function.
+     *
+     * @param string $tagManagerId The tag manager id
+     *
+     * @return string
+     */
     public function tagManagerFunction($tagManagerId)
     {
         return <<<EOT
