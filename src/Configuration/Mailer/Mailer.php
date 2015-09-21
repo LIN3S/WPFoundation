@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace LIN3S\WPFoundation\Configuration;
+namespace LIN3S\WPFoundation\Configuration\Mailer;
 
 /**
- * Class that configures the parameters used by wp_mail().
+ * Class that configures the parameters used by "wp_mail".
  *
- * Define the following global variables in your wp-config-custom.php file:
+ * Define the following global variables in your "wp-config-custom.php" file:
  *
  *    MAILER_HOST: Url to the host.
  *    MAILER_PORT: The port used by SMTP.
@@ -23,7 +23,7 @@ namespace LIN3S\WPFoundation\Configuration;
  *    MAILER_FROM: The email address that will be shown to the receiver.
  *    MAILER_FROM_NAME: The name that will be shown to the receiver.
  *
- * Remember to add this class to your theme constructor
+ * Remember to add this class to your theme constructor.
  *
  * @author Gorka Laucirica <gorka.lauzirika@gmail.com>
  */
@@ -38,9 +38,9 @@ final class Mailer
     }
 
     /**
-     * Configures the mailer according to the parameters in wp-config-custom.php
+     * Configures the mailer according to the parameters in "wp-config-custom.php".
      *
-     * @param object $phpMailer PhpMailer instance.
+     * @param object $phpMailer The PhpMailer instance
      */
     public function mailer($phpMailer)
     {
