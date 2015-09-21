@@ -16,7 +16,7 @@ namespace LIN3S\WPFoundation\Twig;
  *
  *     {{ tagManager('GTM-XXXXXX') }}
  *
- * Remember to call the constructor before using it
+ * Remember to call the constructor into theme before using it.
  *
  * @author Beñat Espiña <benatespina@gmail.com>
  * @author Gorka Laucirica <gorka.lauzirika@gmail.com>

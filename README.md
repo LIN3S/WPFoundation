@@ -32,13 +32,17 @@ The following code snippets are representative code samples of how can it use th
   * [Ajax](#ajax)
 2. Configuration
   * [Assets](#assets)
+  * [Mailer](#mailer)
   * [Menus](#menus)
   * [Theme](#theme)
+  * [Translations](#translations)
 3. PostTypes
   * [PostType](#posttype)
   * [Fields](#fields)
   * [RewriteRules](#rewriterules)
-4. Widgets
+4. Twig
+  * [TagManagerTwig](#tagmanagertwig)
+5. Widgets
   * [Widget](#widget)
   * [Widget Areas](#widget-areas)
 
@@ -105,7 +109,7 @@ class Assets extends BaseAssets
             $this->addScript('app.min', self::BUILD_JS, ['jquery', 'jquery.counterup', 'sidr']);
         }
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -113,6 +117,31 @@ class Assets extends BaseAssets
     {
         $this->addStylesheet('adminCss');
         $this->addScript('adminScript');
+    }
+}
+```
+
+### Mailer
+After instantiate the Mailer into the theme...
+```php
+(...)
+
+use LIN3S\WPFoundation\Configuration\Mailer\MailInterface;
+use Timber;
+
+final class ContactMail implements MailInterface
+{
+    /**
+     * {@inheritdoc}
+     */
+    public static function mail($request)
+    {
+        wp_mail(
+            MAILER_TO,
+            'Contact'
+            Timber::compile('mail/mail.twig', ['request' => $request]),
+            ['Content-Type: text/html; charset=UTF-8']
+        );
     }
 }
 ```
@@ -185,6 +214,31 @@ class AwesomeTheme extends Theme
         $data['lang'] = ICL_LANGUAGE_CODE;
 
         return $context;
+    }
+}
+```
+
+### Translations
+```php
+(...)
+
+use LIN3S\WPFoundation\Configuration\Translations\Translations as BaseTranslations;
+
+final class Translations extends BaseTranslations
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function translations()
+    {
+        return [
+            'Contact us' => __('Contact us', 'Your awesome domain'),
+            'Name'       => __('Name', 'Your awesome domain'),
+            'Phone'      => __('Phone', 'Your awesome domain'),
+            'Company'    => __('Company', 'Your awesome domain'),
+
+            (...)
+        ];
     }
 }
 ```
@@ -279,7 +333,7 @@ class CustomPostType extends PostType
 
         return $permalink;
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -433,6 +487,14 @@ class CustomRewriteRules extends RewriteRules
 }
 ```
 
+### TagManagerTwig
+```twig
+(...)
+{% block tagManager %}
+    {{ tagManager('GTM-XXXXXX') }}
+{% endblock %}
+```
+
 ### Widget
 ```php
 (...)
@@ -523,7 +585,7 @@ class CustomWidgetArea extends WidgetArea
 }
 ```
 
-    
+
 [1]: http://lin3s.com
 [2]: https://github.com/LIN3S/WordpressStandard
 [3]: https://getcomposer.org/download/
