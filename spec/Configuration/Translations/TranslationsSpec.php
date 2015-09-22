@@ -21,12 +21,7 @@ use Prophecy\Argument;
  */
 class TranslationsSpec extends ObjectBehavior
 {
-    function let()
-    {
-        $this->beAnInstanceOf('fixtures\LIN3S\WPFoundation\Translations');
-    }
-
-    function it_extends_translations()
+    function it_is_initializable()
     {
         $this->shouldHaveType('LIN3S\WPFoundation\Configuration\Translations\Translations');
     }
@@ -36,8 +31,16 @@ class TranslationsSpec extends ObjectBehavior
         $this->shouldHaveType('LIN3S\WPFoundation\Configuration\Translations\TranslationsInterface');
     }
 
-    function it_translations_returns_array()
+    function it_throws_exception_when_the_WPML_is_not_installed()
     {
-        $this->translations()->shouldBeArray();
+        $this->shouldThrow(new \Exception('This class needs WPML, please install it before using Translations class'))
+            ->during('trans', ['dummy-key']);
+    }
+
+    function it_trans_returns_translation()
+    {
+        include_once __DIR__ . '/../../../vendor/lin3s/wp-phpspec-brigde/src/Wpml.php';
+
+        $this->trans('dummy-key')->shouldReturn('dummy-key');
     }
 }

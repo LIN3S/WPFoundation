@@ -11,47 +11,58 @@
 
 namespace LIN3S\WPFoundation\Configuration\Translations;
 
-use Twig_SimpleFunction;
-
 /**
- * Abstract class of translations that implements the interface.
- *
- * This class centralizes in an easy way all the translations,
- * including the filter for Twig template engine.
+ * Class of translations that implements the interface with
+ * "trans" method. This class is strongly coupled to the WPML.
  *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
-abstract class Translations implements TranslationsInterface
+class Translations implements TranslationsInterface
 {
     /**
-     * Constructor.
+     * Domain translation name.
+     *
+     * This variable avoids the use of global
+     * constants and it's extensible in an easy way.
+     *
+     * @var string
      */
-    public function __construct()
-    {
-        add_action('twig_apply_filters', function ($twig) {
-            $twig->addFunction(new Twig_SimpleFunction('trans', [$this, 'translationOfKey']));
-
-            return $twig;
-        });
-    }
+    protected static $domain = 'WP Foundation default domain';
 
     /**
      * {@inheritdoc}
      */
     public static function trans($key)
     {
-        return self::translationOfKey($key);
+        self::isWpmlDefined();
+
+        if (false === icl_t(false === self::domain(), $key)) {
+            icl_register_string(self::domain(), $key, $key);
+        }
+
+        return __($key, self::domain());
     }
 
     /**
-     * Gets the translation of key given.
-     *
-     * @param string $key The key of translations array
+     * Returns the domain defined into TRANSLATION_DOMAIN global
+     * const or otherwise the value of domain static variable.
      *
      * @return string
      */
-    private function translationOfKey($key)
+    private static function domain()
     {
-        return true === array_key_exists($key, $this->translations()) ? $this->translations()[$key] : '';
+        return defined('TRANSLATION_DOMAIN') ? TRANSLATION_DOMAIN : self::$domain;
+    }
+
+    /**
+     * Checks if the WMPL is available.
+     *
+     * @throws \Exception when the WPML is not installed.
+     */
+    private static function isWpmlDefined()
+    {
+        if (false === function_exists('icl_t') || false === function_exists('icl_register_string')) {
+            throw new \Exception('This class needs WPML, please install it before using Translations class');
+        }
     }
 }

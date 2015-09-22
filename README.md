@@ -42,6 +42,7 @@ The following code snippets are representative code samples of how can it use th
   * [RewriteRules](#rewriterules)
 4. Twig
   * [TagManagerTwig](#tagmanagertwig)
+  * [TranslationTwig](#translationtwig)
 5. Widgets
   * [Widget](#widget)
   * [Widget Areas](#widget-areas)
@@ -176,9 +177,6 @@ use LIN3S\WPFoundation\Configuration\Theme\Theme;
 
 class AwesomeTheme extends Theme
 {
-    const VERSION = '0.1';
-    const LANG = 'en';
-
     /**
      * {@inheritdoc}
      */
@@ -186,12 +184,10 @@ class AwesomeTheme extends Theme
     {
         new Assets();
         new ImageSizes();
+        new Mailer();
+        new Menus();
 
         new CustomPostType();
-
-        new CustomRewriteRules();
-
-        new MainMenu();
     }
 
     /**
@@ -220,27 +216,7 @@ class AwesomeTheme extends Theme
 
 ### Translations
 ```php
-(...)
-
-use LIN3S\WPFoundation\Configuration\Translations\Translations as BaseTranslations;
-
-final class Translations extends BaseTranslations
-{
-    /**
-     * {@inheritdoc}
-     */
-    public function translations()
-    {
-        return [
-            'Contact us' => __('Contact us', 'Your awesome domain'),
-            'Name'       => __('Name', 'Your awesome domain'),
-            'Phone'      => __('Phone', 'Your awesome domain'),
-            'Company'    => __('Company', 'Your awesome domain'),
-
-            (...)
-        ];
-    }
-}
+\LIN3S\WPFoundation\Configuration\Translations\Translations::trans('Your awesome string');
 ```
 
 ### PostType
@@ -488,11 +464,19 @@ class CustomRewriteRules extends RewriteRules
 ```
 
 ### TagManagerTwig
+After instantiate the the `TagManagerTwig` in your theme, you can just call as following:
 ```twig
 (...)
 {% block tagManager %}
     {{ tagManager('GTM-XXXXXX') }}
 {% endblock %}
+```
+
+### TranslationTwig
+After instantiate the the `TranslationTwig` in your theme, you can just call as following:
+```twig
+(...)
+{{ trans('Your awesome string') }}
 ```
 
 ### Widget

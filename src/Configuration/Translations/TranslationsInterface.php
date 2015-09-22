@@ -19,13 +19,6 @@ namespace LIN3S\WPFoundation\Configuration\Translations;
 interface TranslationsInterface
 {
     /**
-     * Returns the translations array.
-     *
-     * @return array
-     */
-    public function translations();
-
-    /**
      * Static method that works like alias of translation Twig function into the PHP code.
      *
      * @param string $key The key of translations array

@@ -28,21 +28,11 @@ class TagManagerTwig
      */
     public function __construct()
     {
-        add_action('twig_apply_filters', [$this, 'addFilter']);
-    }
+        add_action('twig_apply_filters', function ($twig) {
+            $twig->addFunction(new \Twig_SimpleFunction('tagManager', [$this, 'tagManagerFunction']));
 
-    /**
-     * Callback of "twig_apply_filters" WordPress action.
-     *
-     * @param mixed $twig The twig environment instance
-     *
-     * @return mixed
-     */
-    public function addFilter($twig)
-    {
-        $twig->addFunction(new \Twig_SimpleFunction('tagManager', [$this, 'tagManagerFunction']));
-
-        return $twig;
+            return $twig;
+        });
     }
 
     /**

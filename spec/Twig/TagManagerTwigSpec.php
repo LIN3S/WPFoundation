@@ -20,9 +20,9 @@ use LIN3S\WordPressPhpSpecBridge\ObjectBehavior;
  */
 class TagManagerTwigSpec extends ObjectBehavior
 {
-    function let()
+    function it_is_initializable()
     {
-        $this->beAnInstanceOf('LIN3S\WPFoundation\Twig\TagManagerTwig');
+        $this->shouldHaveType('LIN3S\WPFoundation\Twig\TagManagerTwig');
     }
 
     function it_renders_tag_manager_container()
@@ -38,4 +38,4 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 EOT
         );
     }
-} 
+}
