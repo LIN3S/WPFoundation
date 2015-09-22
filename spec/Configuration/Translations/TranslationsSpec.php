@@ -31,16 +31,15 @@ class TranslationsSpec extends ObjectBehavior
         $this->shouldHaveType('LIN3S\WPFoundation\Configuration\Translations\TranslationsInterface');
     }
 
-    function it_throws_exception_when_the_WPML_is_not_installed()
+    function it_trans_when_the_WPML_is_not_installed()
     {
-        $this->shouldThrow(new \Exception('This class needs WPML, please install it before using Translations class'))
-            ->during('trans', ['dummy-key']);
+        $this->trans('dummy-key')->shouldReturn('dummy-key');
     }
 
     function it_trans_returns_translation()
     {
         include_once __DIR__ . '/../../../vendor/lin3s/wp-phpspec-brigde/src/Wpml.php';
 
-        $this->trans('dummy-key')->shouldReturn('dummy-key');
+        $this->trans('dummy-key')->shouldReturn('translation of dummy-key');
     }
 }

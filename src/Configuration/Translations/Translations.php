@@ -34,7 +34,9 @@ class Translations implements TranslationsInterface
      */
     public static function trans($key)
     {
-        self::isWpmlDefined();
+        if (false === function_exists('icl_t') || false === function_exists('icl_register_string')) {
+            return $key;
+        }
 
         if (false === icl_t(false === self::domain(), $key)) {
             icl_register_string(self::domain(), $key, $key);
@@ -52,17 +54,5 @@ class Translations implements TranslationsInterface
     private static function domain()
     {
         return defined('TRANSLATION_DOMAIN') ? TRANSLATION_DOMAIN : self::$domain;
-    }
-
-    /**
-     * Checks if the WMPL is available.
-     *
-     * @throws \Exception when the WPML is not installed.
-     */
-    private static function isWpmlDefined()
-    {
-        if (false === function_exists('icl_t') || false === function_exists('icl_register_string')) {
-            throw new \Exception('This class needs WPML, please install it before using Translations class');
-        }
     }
 }
