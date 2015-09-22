@@ -33,6 +33,8 @@ class TranslationTwig
             $twig->addFunction(new \Twig_SimpleFunction('trans', function ($key) {
                 return Translations::trans($key);
             }));
+
+            return $twig;
         });
     }
 }
