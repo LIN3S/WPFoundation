@@ -38,11 +38,11 @@ class Translations implements TranslationsInterface
             return $key;
         }
 
-        if (false === icl_t(false === self::domain(), $key)) {
+        if (false === icl_t(self::domain(), $key)) {
             icl_register_string(self::domain(), $key, $key);
         }
 
-        return __($key, self::domain());
+        return icl_t(self::domain(), $key);
     }
 
     /**
