@@ -1,5 +1,5 @@
-# Wordpress Foundation
-> Helper classes for building Wordpress theme in the LIN3S way.
+#WordPress Foundation
+>Helper classes for building WordPress theme in the LIN3S way
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/9d974f76-3f53-487b-b6ed-92d3b328a450/mini.png)](https://insight.sensiolabs.com/projects/9d974f76-3f53-487b-b6ed-92d3b328a450)
 [![Build Status](https://travis-ci.org/LIN3S/WPFoundation.svg?branch=master)](https://travis-ci.org/LIN3S/WPFoundation)
@@ -9,15 +9,15 @@
 [![Latest Stable Version](https://poser.pugx.org/lin3s/wp-foundation/v/stable.svg)](https://packagist.org/packages/lin3s/wp-foundation)
 [![Latest Unstable Version](https://poser.pugx.org/lin3s/wp-foundation/v/unstable.svg)](https://packagist.org/packages/lin3s/wp-foundation)
 
-## Why?
-After implementing several Wordpress themes, we built what we think can be considered as best practices building this
-kind of projects in a clean, consistent and fast way: thus was born [LIN3S][1]'s [Wordpress Standard Edition][2]. We are
+##Why?
+After implementing several WordPress themes, we built what we think can be considered as best practices building this
+kind of projects in a clean, consistent and fast way: thus was born [LIN3S][1]'s [WordPress Standard Edition][2]. We are
 really happy with it, but there are some tasks that are very repetitive and tedious, furthermore each developer usually
 implements in a different way so, with this library we try to avoid these kind of troubles. At this moment, WPFoundation
 only contains a set of **interfaces** and **abstract classes** (in the future who knows :)) to force all developers to
 follow the same way becoming our code more consistent.
 
-## Installation
+##Installation
 The recommended and the most suitable way to install is through [Composer][3]. Be sure that the tool is installed
 in your system and execute the following command:
 
@@ -25,7 +25,7 @@ in your system and execute the following command:
 $ composer require lin3s/wp-foundation
 ```
 
-## Usage examples
+##Usage examples
 The following code snippets are representative code samples of how can it use this library:
 
 1. Ajax
@@ -47,13 +47,13 @@ The following code snippets are representative code samples of how can it use th
   * [Widget](#widget)
   * [Widget Areas](#widget-areas)
 
-### Ajax
+###Ajax
 ```php
 (...)
 
 use LIN3S\WPFoundation\Ajax\Ajax;
 
-class MyAwesomeAjax extends Ajax
+final class MyAwesomeAjax extends Ajax
 {
     /**
      * {@inheritdoc}
@@ -73,29 +73,19 @@ class MyAwesomeAjax extends Ajax
 }
 ```
 
-### Assets
+###Assets
 ```php
 (...)
 
 use LIN3S\WPFoundation\Configuration\Assets\Assets as BaseAssets;
 
-class Assets extends BaseAssets
+final class Assets extends BaseAssets
 {
     /**
      * {@inheritdoc}
      */
     public function assets()
     {
-        wp_register_style(
-            'metaslider-public',
-            get_template_directory_uri() . '../../../plugins/ml-slider/assets/metaslider/public.css'
-        );
-        wp_register_style(
-            'metaslider-flex-slider',
-            get_template_directory_uri() . '../../../plugins/ml-slider/assets/sliders/flexslider/flexslider.css'
-        );
-        $this->addStylesheet('app', self::CSS, ['metaslider-public', 'metaslider-flex-slider']);
-
         if (WP_DEBUG) {
             $this
                 ->addScript('jquery.sidr.min', self::VENDOR . '/sidr')
@@ -147,13 +137,13 @@ final class ContactMail implements MailInterface
 }
 ```
 
-### Menus
+###Menus
 ```php
 (...)
 
 use LIN3S\WPFoundation\Configuration\Menus\Menus as BaseMenus;
 
-class Menus extends BaseMenus
+final class Menus extends BaseMenus
 {
     const MENU_AWESOME = 'awesome-menu';
 
@@ -169,13 +159,13 @@ class Menus extends BaseMenus
 }
 ```
 
-### Theme
+###Theme
 ```php
 (...)
 
 use LIN3S\WPFoundation\Configuration\Theme\Theme;
 
-class AwesomeTheme extends Theme
+final class AwesomeTheme extends Theme
 {
     /**
      * {@inheritdoc}
@@ -214,18 +204,18 @@ class AwesomeTheme extends Theme
 }
 ```
 
-### Translations
+###Translations
 ```php
 \LIN3S\WPFoundation\Configuration\Translations\Translations::trans('Your awesome string');
 ```
 
-### PostType
+###PostType
 ```php
 (...)
 
 use LIN3S\WPFoundation\PostTypes\PostType;
 
-class CustomPostType extends PostType
+final class CustomPostType extends PostType
 {
     const NAME = 'custom';
     const TAXONOMY_TYPE_CATEGORY = 'category-customs';
@@ -321,36 +311,32 @@ class CustomPostType extends PostType
     /**
      * {@inheritdoc}
      */
-    public static function serialize($customs)
+    public function removeScreenAttributes()
     {
-        if (is_array($customs)) {
-            foreach ($customs as $key => $custom) {
-                $customs[$key]->image = new TimberImage(simple_fields_value('custom_image', $custom->id));
-                $customs[$key]->options = simple_fields_values('custom_options', $custom->id);
-                $customs[$key]->reference = simple_fields_value('custom_reference', $custom->id);
-            }
+        remove_post_type_support(self::NAME, 'editor');
+    }
 
-            return $customs;
-        }
+    /**
+     * {@inheritdoc}
+     */
+    public static function singleSerialize($posType)
+    {
+        $posType->image = new TimberImage(simple_fields_value('custom_image', $posType->id));
+        $posType->options = simple_fields_values('custom_options', $posType->id);
+        $posType->reference = simple_fields_value('custom_reference', $posType->id);
 
-        $custom = $customs;
-
-        $custom->image = new TimberImage(simple_fields_value('custom_image', $custom->id));
-        $custom->options = simple_fields_values('custom_options', $custom->id);
-        $custom->reference = simple_fields_value('custom_reference', $custom->id);
-
-        return $custom;
+        return $posType;
     }
 }
 ```
 
-### Fields
+###Fields
 ```php
 (...)
 
 use LIN3S\WPFoundation\PostTypes\Fields\Fields;
 
-class CustomFields extends Fields
+final class CustomFields extends Fields
 {
     /**
      * {@inheritdoc}
@@ -403,13 +389,13 @@ class CustomFields extends Fields
 }
 ```
 
-### RewriteRules
+###RewriteRules
 ```php
 (...)
 
 use LIN3S\WPFoundation\PostTypes\RewriteRules\RewriteRules;
 
-class CustomRewriteRules extends RewriteRules
+final class CustomRewriteRules extends RewriteRules
 {
     /**
      * {@inheritdoc}
@@ -463,7 +449,7 @@ class CustomRewriteRules extends RewriteRules
 }
 ```
 
-### TagManagerTwig
+###TagManagerTwig
 After instantiate the the `TagManagerTwig` in your theme, you can just call as following:
 ```twig
 (...)
@@ -472,20 +458,20 @@ After instantiate the the `TagManagerTwig` in your theme, you can just call as f
 {% endblock %}
 ```
 
-### TranslationTwig
+###TranslationTwig
 After instantiate the the `TranslationTwig` in your theme, you can just call as following:
 ```twig
 (...)
 {{ trans('Your awesome string') }}
 ```
 
-### Widget
+###Widget
 ```php
 (...)
 
 use LIN3S\WPFoundation\Widgets\Widget;
 
-class SocialNetworksWidget extends Widget
+final class SocialNetworksWidget extends Widget
 {
     /**
      * {@inheritdoc}
@@ -544,13 +530,13 @@ class SocialNetworksWidget extends Widget
 }
 ```
 
-### Widget Areas
+###Widget Areas
 ```php
 (...)
 
 use LIN3S\WPFoundation\Widgets\Areas\WidgetArea;
 
-class CustomWidgetArea extends WidgetArea
+final class CustomWidgetArea extends WidgetArea
 {
     /**
      * {@inheritdoc}
@@ -568,12 +554,9 @@ class CustomWidgetArea extends WidgetArea
     }
 }
 ```
-
+##Licensing Options
+[![License](https://poser.pugx.org/lin3s/wp-foundation/license.svg)](https://github.com/LIN3S/WPFoundation/blob/master/LICENSE)
 
 [1]: http://lin3s.com
 [2]: https://github.com/LIN3S/WordpressStandard
 [3]: https://getcomposer.org/download/
-
-Licensing Options
------------------
-[![License](https://poser.pugx.org/lin3s/wp-foundation/license.svg)](https://github.com/LIN3S/WPFoundation/blob/master/LICENSE)
