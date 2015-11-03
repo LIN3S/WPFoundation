@@ -311,14 +311,6 @@ final class CustomPostType extends PostType
     /**
      * {@inheritdoc}
      */
-    public function removeScreenAttributes()
-    {
-        remove_post_type_support(self::NAME, 'editor');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public static function singleSerialize($posType)
     {
         $posType->image = new TimberImage(simple_fields_value('custom_image', $posType->id));
@@ -385,6 +377,14 @@ final class CustomFields extends Fields
             ]
         );
         simple_fields_register_post_type_default('custom_connector', CustomPostType::NAME);
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function removeScreenAttributes()
+    {
+        remove_post_type_support(CustomPostType::NAME, 'editor');
     }
 }
 ```

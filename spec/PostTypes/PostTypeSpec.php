@@ -51,11 +51,6 @@ class PostTypeSpec extends ObjectBehavior
         $this->postType();
     }
 
-    function it_should_be_remove_screen_attributes()
-    {
-        $this->removeScreenAttributes();
-    }
-
     function it_should_be_rewrite_rules()
     {
         $this->rewriteRules();

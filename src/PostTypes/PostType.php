@@ -78,13 +78,6 @@ abstract class PostType implements PostTypeInterface
     /**
      * {@inheritdoc}
      */
-    public function removeScreenAttributes()
-    {
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function taxonomyPermalink($url, $term)
     {
         return $url;

@@ -43,12 +43,6 @@ interface PostTypeInterface
     public function postType();
 
     /**
-     * Removes the screen attributes from admin pos type view calling
-     * the WordPress internal "remove_post_type_support" method.
-     */
-    public function removeScreenAttributes();
-
-    /**
      * Registers required rewrite rules by this post type.
      */
     public function rewriteRules();
@@ -69,8 +63,8 @@ interface PostTypeInterface
      * This is the responsibility of this method. It's a callback of "term_link" filter
      * that offers manipulate the creation of taxonomy permalink.
      *
-     * @param string $url      The url
-     * @param string $term     The term
+     * @param string $url  The url
+     * @param string $term The term
      *
      * @return string Customized url
      */

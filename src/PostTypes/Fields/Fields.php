@@ -27,4 +27,11 @@ abstract class Fields implements FieldsInterface
         $this->fields();
         $this->connector();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeScreenAttributes()
+    {
+    }
 }
