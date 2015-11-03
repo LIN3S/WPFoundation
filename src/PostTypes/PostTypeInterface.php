@@ -38,9 +38,15 @@ interface PostTypeInterface
     public function permalink($permalink, $id = 0);
 
     /**
-     * Builds the custom post type calling the Wordpress internal "register_post_type" method.
+     * Builds the custom post type calling the WordPress internal "register_post_type" method.
      */
     public function postType();
+
+    /**
+     * Removes the screen attributes from admin pos type view calling
+     * the WordPress internal "remove_post_type_support" method.
+     */
+    public function removeScreenAttributes();
 
     /**
      * Registers required rewrite rules by this post type.
@@ -72,7 +78,7 @@ interface PostTypeInterface
 
     /**
      * Only if the post type has a custom taxonomy type too, this method builds
-     * the taxonomy type calling the Wordpress internal "register_taxonomy" method.
+     * the taxonomy type calling the WordPress internal "register_taxonomy" method.
      */
     public function taxonomyType();
 }

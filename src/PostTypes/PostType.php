@@ -32,6 +32,8 @@ abstract class PostType implements PostTypeInterface
 
         add_filter('post_type_link', [$this, 'permalink'], 1, 2);
         add_filter('term_link', [$this, 'taxonomyPermalink'], 1, 2);
+
+        add_action('admin_init', [$this, 'removeScreenAttributes']);
     }
 
     /**
@@ -61,7 +63,23 @@ abstract class PostType implements PostTypeInterface
      */
     public static function serialize($postTypes)
     {
-        return $postTypes;
+        if (is_array($postTypes)) {
+            foreach ($postTypes as $key => $postType) {
+                $postTypes[$key] = self::singleSerialize($postType);
+            }
+
+            return $postTypes;
+        }
+        $postType = $postTypes;
+
+        return self::singleSerialize($postType);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeScreenAttributes()
+    {
     }
 
     /**
@@ -70,5 +88,18 @@ abstract class PostType implements PostTypeInterface
     public function taxonomyPermalink($url, $term)
     {
         return $url;
+    }
+
+    /**
+     * Static method that simplifies the process of getting all data
+     * from given post. This method is called by the main serialize method.
+     *
+     * @param Object $postType The post type
+     *
+     * @return Object Serialized given post type
+     */
+    protected static function singleSerialize($postType)
+    {
+        return $postType;
     }
 }
