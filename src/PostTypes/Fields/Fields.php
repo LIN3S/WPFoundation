@@ -26,6 +26,8 @@ abstract class Fields implements FieldsInterface
     {
         $this->fields();
         $this->connector();
+
+        add_action('admin_init', [$this, 'removeScreenAttributes']);
     }
 
     /**

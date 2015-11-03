@@ -32,8 +32,6 @@ abstract class PostType implements PostTypeInterface
 
         add_filter('post_type_link', [$this, 'permalink'], 1, 2);
         add_filter('term_link', [$this, 'taxonomyPermalink'], 1, 2);
-
-        add_action('admin_init', [$this, 'removeScreenAttributes']);
     }
 
     /**
