@@ -63,14 +63,14 @@ abstract class PostType implements PostTypeInterface
     {
         if (is_array($postTypes)) {
             foreach ($postTypes as $key => $postType) {
-                $postTypes[$key] = self::singleSerialize($postType);
+                $postTypes[$key] = static::singleSerialize($postType);
             }
 
             return $postTypes;
         }
         $postType = $postTypes;
 
-        return self::singleSerialize($postType);
+        return static::singleSerialize($postType);
     }
 
     /**
