@@ -17,7 +17,7 @@ use LIN3S\WPFoundation\Configuration\Translations\Translations;
  * Abstract class of base custom fields that implements the interface.
  * This class avoids the redundant task of create the same Fields constructor.
  *
- * @author Beñat Espiña <bespina@lin3s.com>
+ * @author Beñat Espiña <benatespina@gmail.com>
  */
 abstract class Fields implements FieldsInterface
 {
