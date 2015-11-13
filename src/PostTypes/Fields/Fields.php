@@ -29,7 +29,7 @@ abstract class Fields implements FieldsInterface
         if (class_exists('acf_pro')) {
             $methods = get_class_methods($this);
             $result = [];
-            forEach ($methods as $method) {
+            foreach ($methods as $method) {
                 if ($method !== '__construct'
                     && $method !== 'removeScreenAttributes'
                     && $method !== 'addAcfLayout'
