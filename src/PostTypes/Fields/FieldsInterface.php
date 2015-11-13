@@ -20,11 +20,6 @@ namespace LIN3S\WPFoundation\PostTypes\Fields;
 interface FieldsInterface
 {
     /**
-     * Builds the post type fields.
-     */
-    public function fields();
-
-    /**
      * Joins fields created in the "fields" method with the custom post type class.
      *
      * @return mixed
