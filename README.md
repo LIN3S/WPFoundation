@@ -178,6 +178,8 @@ final class AwesomeTheme extends Theme
         new Menus();
 
         new CustomPostType();
+
+        PageFields::fromFlexibleContentLayout()     // also can be instantiate with "fromDefault" method
     }
 
     /**
@@ -305,7 +307,7 @@ final class CustomPostType extends PostType
      */
     public function fields()
     {
-        new YourFields();
+        YourFields::fromDefault();
     }
 
     /**
