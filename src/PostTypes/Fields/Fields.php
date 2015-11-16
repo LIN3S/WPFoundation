@@ -56,6 +56,14 @@ abstract class Fields implements FieldsInterface
     /**
      * {@inheritdoc}
      */
+    public function isFlexible()
+    {
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function fields()
     {
     }
