@@ -24,11 +24,5 @@ interface FieldsInterface
      *
      * @return mixed
      */
-    public function connector();
-
-    /**
-     * Removes the screen attributes from admin post type view calling
-     * the WordPress internal "remove_post_type_support" method.
-     */
-    public function removeScreenAttributes();
+    public static function connector();
 }

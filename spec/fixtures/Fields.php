@@ -23,22 +23,13 @@ class Fields extends BaseFields
     /**
      * {@inheritdoc}
      */
-    public function fields()
-    {
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function connector()
+    public static function connector()
     {
         return [
             [
-                [
-                    'param'    => 'post_type',
-                    'operator' => '==',
-                    'value'    => 'post',
-                ],
+                'param'    => 'post_type',
+                'operator' => '==',
+                'value'    => 'post',
             ],
         ];
     }

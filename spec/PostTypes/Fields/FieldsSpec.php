@@ -23,6 +23,7 @@ class FieldsSpec extends ObjectBehavior
     function let()
     {
         $this->beAnInstanceOf('fixtures\LIN3S\WPFoundation\Fields');
+        $this->beConstructedFromDefault();
     }
 
     function it_extends_fields()
@@ -35,26 +36,14 @@ class FieldsSpec extends ObjectBehavior
         $this->shouldHaveType('LIN3S\WPFoundation\PostTypes\Fields\FieldsInterface');
     }
 
-    function it_should_be_fields()
-    {
-        $this->fields();
-    }
-
     function it_should_connector()
     {
-        $this->connector()->shouldReturn([
+        $this::connector()->shouldReturn([
             [
-                [
-                    'param'    => 'post_type',
-                    'operator' => '==',
-                    'value'    => 'post',
-                ],
+                'param'    => 'post_type',
+                'operator' => '==',
+                'value'    => 'post',
             ],
         ]);
-    }
-
-    function it_should_be_remove_screen_attributes()
-    {
-        $this->removeScreenAttributes();
     }
 }
