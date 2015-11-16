@@ -335,7 +335,7 @@ final class CustomFields extends Fields
     /**
      * {@inheritdoc}
      */
-    public static function connector()
+    public function connector()
     {
         return [
             [
@@ -361,7 +361,7 @@ final class CustomFields extends Fields
          *
          * @return array
          */
-        protected static function slider()
+        protected function slider()
         {
             return [
                 'display'    => 'block',

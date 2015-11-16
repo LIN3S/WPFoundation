@@ -37,18 +37,20 @@ abstract class Fields implements FieldsInterface
                     && $method !== 'isFlexible'
                     && $method !== 'flexibleContentLayout'
                     && $method !== 'connector'
+                    && $method !== 'fields'
                 ) {
                     $result[] = $this->$method();
                 }
-                if (true === $this->isFlexible()) {
-                    $this->flexibleContentLayout($result);
-                } else {
+            }
+            if (true === $this->isFlexible()) {
+                $this->flexibleContentLayout($result);
+            } else {
+                foreach ($result as $method) {
                     $this->$method();
                 }
             }
-        } else {
-            $this->fields();
         }
+        $this->fields();
     }
 
     /**
