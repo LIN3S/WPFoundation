@@ -179,7 +179,7 @@ final class AwesomeTheme extends Theme
 
         new CustomPostType();
 
-        PageFields::fromFlexibleContentLayout()     // also can be instantiate with "fromDefault" method
+        PageFields::fromFlexibleContentLayout()     // it can also be instantiated with "fromDefault" method
     }
 
     /**
