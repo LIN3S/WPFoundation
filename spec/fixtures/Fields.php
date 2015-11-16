@@ -23,7 +23,7 @@ class Fields extends BaseFields
     /**
      * {@inheritdoc}
      */
-    public function fields()
+    public function isFlexible()
     {
     }
 
