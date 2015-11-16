@@ -52,9 +52,4 @@ class FieldsSpec extends ObjectBehavior
             ],
         ]);
     }
-
-    function it_should_be_remove_screen_attributes()
-    {
-        $this->removeScreenAttributes();
-    }
 }

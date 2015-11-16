@@ -32,8 +32,7 @@ interface FieldsInterface
     public function connector();
 
     /**
-     * Removes the screen attributes from admin post type view calling
-     * the WordPress internal "remove_post_type_support" method.
+     * Method that checks if the class has flexible content or not.
      */
-    public function removeScreenAttributes();
+    public function isFlexible();
 }
