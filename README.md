@@ -178,6 +178,8 @@ final class AwesomeTheme extends Theme
         new Menus();
 
         new CustomPostType();
+
+        PageFields::fromFlexibleContentLayout()     // it can also be instantiated with "fromDefault" method
     }
 
     /**
@@ -305,7 +307,7 @@ final class CustomPostType extends PostType
      */
     public function fields()
     {
-        new YourFields();
+        YourFields::fromDefault();
     }
 
     /**
@@ -328,63 +330,70 @@ final class CustomPostType extends PostType
 
 use LIN3S\WPFoundation\PostTypes\Fields\Fields;
 
-final class CustomFields extends Fields
+final class PageFields extends Fields
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function fields()
-    {
-        simple_fields_register_field_group(CustomPostType::NAME, [
-            'name'       => 'Custom',
-            'repeatable' => false,
-            'fields'     => [
-                [
-                    'name' => 'Image',
-                    'slug' => 'custom_image',
-                    'type' => 'file'
-                ],
-                [
-                    'name' => 'Options',
-                    'slug' => 'custom_options',
-                    'type' => 'text'
-                ],
-                [
-                    'name' => 'Reference',
-                    'slug' => 'custom_reference',
-                    'type' => 'text'
-                ]
-            ]
-        ]);
-    }
-
     /**
      * {@inheritdoc}
      */
     public function connector()
     {
-        simple_fields_register_post_connector('custom_connector',
+        return [
             [
-                'name'         => 'Custom connector',
-                'field_groups' => [
-                    [
-                        'slug'     => 'custom',
-                        'context'  => 'normal',
-                        'priority' => 'default'
-                    ]
-                ],
-                'post_types'   => CustomPostType::NAME
-            ]
-        );
-        simple_fields_register_post_type_default('custom_connector', CustomPostType::NAME);
+                'param'    => 'post_type',
+                'operator' => '==',
+                'value'    => 'page',
+            ],
+        ];
     }
-    
+
     /**
-     * {@inheritdoc}
+     * The slider ACF component.
+     *
+     * @return array
      */
-    public function removeScreenAttributes()
+    protected function slider()
     {
-        remove_post_type_support(CustomPostType::NAME, 'editor');
+        return [
+            'display'    => 'block',
+            'key'        => 'field_page_slider',
+            'label'      => Translations::trans('Slider'),
+            'name'       => 'slider',
+            'sub_fields' => [
+                [
+                    'key'          => 'field_page_slider_slides',
+                    'label'        => Translations::trans('Slides'),
+                    'name'         => 'slides',
+                    'type'         => 'repeater',
+                    'min'          => 1,
+                    'layout'       => 'block',
+                    'button_label' => 'Add slide',
+                    'sub_fields'   => [
+                        [
+                            'key'        => 'field_page_slider_slide_image',
+                            'label'      => Translations::trans('Image'),
+                            'mime_types' => 'png, jpeg, jpg',
+                            'name'       => 'slider_slide_image',
+                            'required'   => 1,
+                            'type'       => 'image',
+                        ],
+                        [
+                            'key'      => 'field_page_slider_slide_title',
+                            'label'    => Translations::trans('Title'),
+                            'name'     => 'slider_slide_text',
+                            'required' => 1,
+                            'type'     => 'text',
+                        ],
+                        [
+                            'key'      => 'field_page_slider_slide_excerpt',
+                            'label'    => Translations::trans('Excerpt'),
+                            'name'     => 'slider_slide_excerpt',
+                            'required' => 0,
+                            'type'     => 'text',
+                        ],
+                    ],
+                ],
+            ],
+        ];
     }
 }
 ```
