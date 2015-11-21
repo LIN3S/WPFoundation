@@ -24,6 +24,7 @@ interface AssetsInterface
     const BUILD_JS = 'build/js';
     const CSS = 'build/css';
     const VENDOR = 'assets/vendor';
+    const NPM = 'node_modules';
 
     /**
      * Registers all the scripts and stylesheet files.
