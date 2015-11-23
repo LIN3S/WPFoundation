@@ -9,9 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace LIN3S\WPFoundation\PostTypes\Fields\Templates;
-
-use LIN3S\WPFoundation\PostTypes\Fields\Fields;
+namespace LIN3S\WPFoundation\PostTypes\Fields;
 
 /**
  * Abstract custom post type fields class that extends the fields basic

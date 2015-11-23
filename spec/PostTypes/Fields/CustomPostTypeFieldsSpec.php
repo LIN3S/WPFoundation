@@ -14,19 +14,20 @@ namespace spec\LIN3S\WPFoundation\PostTypes\Fields;
 use LIN3S\WordPressPhpSpecBridge\ObjectBehavior;
 
 /**
- * Spec of Fields class.
+ * Spec of custom post type fields class.
  *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
-class FieldsSpec extends ObjectBehavior
+class CustomPostTypeFieldsSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beAnInstanceOf('fixtures\LIN3S\WPFoundation\Fields');
+        $this->beAnInstanceOf('fixtures\LIN3S\WPFoundation\CustomPostTypeFields');
     }
 
     function it_extends_fields()
     {
+        $this->shouldHaveType('LIN3S\WPFoundation\PostTypes\Fields\CustomPostTypeFields');
         $this->shouldHaveType('LIN3S\WPFoundation\PostTypes\Fields\Fields');
     }
 
@@ -47,7 +48,7 @@ class FieldsSpec extends ObjectBehavior
                 [
                     'param'    => 'post_type',
                     'operator' => '==',
-                    'value'    => 'post',
+                    'value'    => 'custom_post_type',
                 ],
             ],
         ]);

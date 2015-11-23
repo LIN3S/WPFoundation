@@ -14,20 +14,22 @@ namespace spec\LIN3S\WPFoundation\PostTypes\Fields;
 use LIN3S\WordPressPhpSpecBridge\ObjectBehavior;
 
 /**
- * Spec of Fields class.
+ * Spec of page fields class.
  *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
-class FieldsSpec extends ObjectBehavior
+class PageFieldsSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beAnInstanceOf('fixtures\LIN3S\WPFoundation\Fields');
+        $this->beAnInstanceOf('fixtures\LIN3S\WPFoundation\PageFields');
     }
 
     function it_extends_fields()
     {
+        $this->shouldHaveType('LIN3S\WPFoundation\PostTypes\Fields\Templates\PageFields');
         $this->shouldHaveType('LIN3S\WPFoundation\PostTypes\Fields\Fields');
+
     }
 
     function it_implements_fields_interface()
@@ -47,7 +49,12 @@ class FieldsSpec extends ObjectBehavior
                 [
                     'param'    => 'post_type',
                     'operator' => '==',
-                    'value'    => 'post',
+                    'value'    => 'page',
+                ],
+                [
+                    'param'    => 'page_template',
+                    'operator' => '==',
+                    'value'    => 'page',
                 ],
             ],
         ]);

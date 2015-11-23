@@ -347,9 +347,9 @@ final class CustomFieldComponent extends FieldComponent
 ```php
 (...)
 
-use LIN3S\WPFoundation\PostTypes\Fields\Fields;
+use LIN3S\WPFoundation\PostTypes\Fields\CustomPostTypeFields as BaseCustomPostTypeFields;
 
-final class CustomFields extends Fields
+final class CustomPostTypeFields extends BaseCustomPostTypeFields
 {
     /**
      * {@inheritdoc}
@@ -365,30 +365,30 @@ final class CustomFields extends Fields
             'Fully\Qualified\Namespace\Components\CustomFieldComponent',
         ];
     ];
+}
+```
+
+```php
+(...)
+
+use LIN3S\WPFoundation\PostTypes\Fields\PageFields as BasePageFields;
+
+final class PageFields extends BasePageFields
+{
+    /**
+     * {@inheritdoc}
+     */
+    private $name = 'my_awesome_template;
     
     /**
      * {@inheritdoc}
      */
-    public function connector()
+    public function components()
     {
         return [
-            [
-                [
-                    'param'    => 'post_type',
-                    'operator' => '==',
-                    'value'    => CustomPostType::NAME,
-                ],
-            ],
+            'Fully\Qualified\Namespace\Components\CustomFieldComponent',
         ];
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function removeScreenAttributes()
-    {
-        remove_post_type_support(CustomPostType::NAME, 'editor');
-    }
+    ];
 }
 ```
 
