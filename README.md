@@ -359,8 +359,11 @@ final class CustomFields extends Fields
     /**
      * {@inheritdoc}
      */
-    private $components = [
-        'Fully\Qualified\Namespace\Components\CustomFieldComponent',
+    public function components()
+    {
+        return [
+            'Fully\Qualified\Namespace\Components\CustomFieldComponent',
+        ];
     ];
     
     /**

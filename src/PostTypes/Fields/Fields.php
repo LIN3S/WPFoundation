@@ -11,6 +11,8 @@
 
 namespace LIN3S\WPFoundation\PostTypes\Fields;
 
+use LIN3S\WPFoundation\PostTypes\Fields\Components\FieldComponent;
+
 /**
  * Abstract class of base custom fields that implements the interface.
  * This class avoids the redundant task of create the same Fields constructor.
@@ -27,20 +29,10 @@ abstract class Fields implements FieldsInterface
     protected $name;
 
     /**
-     * Array that contains the fully qualified
-     * namespaces of the field components.
-     *
-     * @var array
-     */
-    protected $components;
-
-    /**
      * Constructor.
      */
     public function __construct()
     {
-        $this->components = [];
-
         $this->fields();
         $this->connector();
 
@@ -71,14 +63,14 @@ abstract class Fields implements FieldsInterface
      */
     public function fields()
     {
-        foreach ($this->components as $component) {
+        foreach ($this->components() as $component) {
             if (false === class_exists($component)) {
                 throw new \Exception(sprintf('The %s class does not exist', $component));
             }
             if ($component instanceof FieldComponent) {
                 throw new \Exception('The %s class must be extend the FieldComponent', $component);
             }
-            $component::register($this->connector(), $this->name);
+            $component::register($this->name, $this->connector());
         }
     }
 

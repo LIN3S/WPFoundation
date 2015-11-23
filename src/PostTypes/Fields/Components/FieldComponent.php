@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace LIN3S\WPFoundation\PostTypes\Fields;
+namespace LIN3S\WPFoundation\PostTypes\Fields\Components;
 
 /**
  * Abstract class of base custom fields components.

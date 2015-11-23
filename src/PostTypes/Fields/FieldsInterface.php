@@ -25,6 +25,13 @@ interface FieldsInterface
     public function fields();
 
     /**
+     * Returns array that contains the fully qualified namespaces of the field components.
+     *
+     * @return array
+     */
+    public function components();
+
+    /**
      * Joins fields created in the "fields" method with the custom post type class.
      *
      * @return mixed
