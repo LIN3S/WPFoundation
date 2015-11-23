@@ -20,14 +20,66 @@ namespace LIN3S\WPFoundation\PostTypes\Fields;
 abstract class Fields implements FieldsInterface
 {
     /**
+     * The template name.
+     *
+     * @var string
+     */
+    protected $name;
+
+    /**
+     * Array that contains the fully qualified
+     * namespaces of the field components.
+     *
+     * @var array
+     */
+    protected $components;
+
+    /**
      * Constructor.
      */
     public function __construct()
     {
+        $this->components = [];
+
         $this->fields();
         $this->connector();
 
-        add_action('admin_init', [$this, 'removeScreenAttributes']);
+        if (false === is_admin()) {
+            return;
+        }
+
+        $newPostId = filter_input(INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT);
+        $updatePostId = filter_input(INPUT_POST, 'post_ID', FILTER_SANITIZE_NUMBER_INT);
+
+        if (isset($newPostId)) {
+            $postId = absint($newPostId);
+        } else if (isset($updatePostId)) {
+            $postId = absint($updatePostId);
+        } else {
+            return;
+        }
+
+        if (isset($postId)) {
+            if ($this->name === get_post_meta($postId, '_wp_page_template', true)) {
+                add_action('admin_init', [$this, 'removeScreenAttributes']);
+            }
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function fields()
+    {
+        foreach ($this->components as $component) {
+            if (false === class_exists($component)) {
+                throw new \Exception(sprintf('The %s class does not exist', $component));
+            }
+            if ($component instanceof FieldComponent) {
+                throw new \Exception('The %s class must be extend the FieldComponent', $component);
+            }
+            $component::register($this->connector(), $this->name);
+        }
     }
 
     /**

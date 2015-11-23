@@ -313,16 +313,37 @@ final class CustomPostType extends PostType
      */
     public static function singleSerialize($posType)
     {
-        $posType->image = new TimberImage(simple_fields_value('custom_image', $posType->id));
-        $posType->options = simple_fields_values('custom_options', $posType->id);
-        $posType->reference = simple_fields_value('custom_reference', $posType->id);
-
+        (...)
+        
         return $posType;
     }
 }
 ```
 
 ###Fields
+```php
+(...)
+
+use LIN3S\WPFoundation\PostTypes\Field\FieldComponent;
+
+final class CustomFieldComponent extends FieldComponent
+{
+    /**
+     * {@inheritdoc}
+     */
+    protected function __construct($aName, $aConnector)
+    {
+        acf_add_local_field_group([
+            'key'      => sprintf('field_%s_component', $aName),
+            
+            (...)
+            
+            'location' => $aConnector
+        ]);
+    }
+}
+```
+
 ```php
 (...)
 
@@ -333,50 +354,29 @@ final class CustomFields extends Fields
     /**
      * {@inheritdoc}
      */
-    public function fields()
-    {
-        simple_fields_register_field_group(CustomPostType::NAME, [
-            'name'       => 'Custom',
-            'repeatable' => false,
-            'fields'     => [
-                [
-                    'name' => 'Image',
-                    'slug' => 'custom_image',
-                    'type' => 'file'
-                ],
-                [
-                    'name' => 'Options',
-                    'slug' => 'custom_options',
-                    'type' => 'text'
-                ],
-                [
-                    'name' => 'Reference',
-                    'slug' => 'custom_reference',
-                    'type' => 'text'
-                ]
-            ]
-        ]);
-    }
-
+    private $name = CustomPostType::name;
+    
+    /**
+     * {@inheritdoc}
+     */
+    private $components = [
+        'Fully\Qualified\Namespace\Components\CustomFieldComponent',
+    ];
+    
     /**
      * {@inheritdoc}
      */
     public function connector()
     {
-        simple_fields_register_post_connector('custom_connector',
+        return [
             [
-                'name'         => 'Custom connector',
-                'field_groups' => [
-                    [
-                        'slug'     => 'custom',
-                        'context'  => 'normal',
-                        'priority' => 'default'
-                    ]
+                [
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => CustomPostType::NAME,
                 ],
-                'post_types'   => CustomPostType::NAME
-            ]
-        );
-        simple_fields_register_post_type_default('custom_connector', CustomPostType::NAME);
+            ],
+        ];
     }
     
     /**
