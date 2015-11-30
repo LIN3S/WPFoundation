@@ -24,7 +24,7 @@ class Wysiwyg
      *
      * @param array $toolbars Array which contains toolbar
      */
-    public function __construct($toolbars)
+    public function __construct(array $toolbars)
     {
         $this->toolbars = $toolbars;
         add_filter('acf/fields/wysiwyg/toolbars', [$this, 'toolbars']);
