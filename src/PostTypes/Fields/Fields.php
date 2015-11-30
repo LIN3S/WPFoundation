@@ -77,6 +77,13 @@ abstract class Fields implements FieldsInterface
     /**
      * {@inheritdoc}
      */
+    public function components()
+    {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function removeScreenAttributes()
     {
     }

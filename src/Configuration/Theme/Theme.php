@@ -11,6 +11,8 @@
 
 namespace LIN3S\WPFoundation\Configuration\Theme;
 
+use LIN3S\WPFoundation\Configuration\Acf\Wysiwyg;
+
 /**
  * Abstract class of theme that implements the interface.
  * This class avoids the use of callbacks in the constructor.
@@ -24,9 +26,20 @@ abstract class Theme implements ThemeInterface
      */
     public function __construct()
     {
+        $this->acf();
         $this->classes();
         add_theme_support('post-thumbnails');
         add_filter('timber_context', [$this, 'context']);
         add_filter('template_selector_available', [$this, 'templates']);
+    }
+
+    /**
+     * All about ACF configuration should be instantiated here.
+     */
+    protected function acf()
+    {
+        new Wysiwyg([
+            'lin3s' => [1 => ['bold', 'italic', 'bullist', 'numlist', 'link', 'unlink']]
+        ]);
     }
 }
