@@ -331,14 +331,12 @@ final class CustomFieldComponent extends FieldComponent
     /**
      * {@inheritdoc}
      */
-    protected function __construct($aName, $aConnector)
+    public static function definition($aName)
     {
-        acf_add_local_field_group([
+        return [
             'key'      => sprintf('field_%s_component', $aName),
             
             (...)
-            
-            'location' => $aConnector
         ]);
     }
 }
