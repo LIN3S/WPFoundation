@@ -26,9 +26,14 @@ abstract class FieldComponent implements FieldComponentInterface
      */
     public static function register($aName, $aConnector)
     {
-        $definition = static::definition($aName);
-        $definition['location'] = $aConnector;
-        acf_add_local_field_group($definition);
+        if (method_exists(get_class(), 'definition')) {
+            $definition = static::definition($aName);
+            $definition['location'] = $aConnector;
+            acf_add_local_field_group($definition);
+        } else {
+            //@deprecated Will be removed in 2.0
+            return new static($aName, $aConnector);
+        }
     }
 
     /**
