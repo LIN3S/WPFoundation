@@ -38,6 +38,7 @@ abstract class PageFields extends Fields
             $postId = absint($updatePostId);
         }
         if (false === isset($postId) || $this->name === get_post_meta($postId, '_wp_page_template', true)) {
+            add_action('add_meta_boxes', [$this, 'addMetaBox']);
             add_action('admin_init', [$this, 'removeScreenAttributes']);
         }
     }
@@ -71,5 +72,33 @@ abstract class PageFields extends Fields
         remove_post_type_support('page', 'comments');
         remove_post_type_support('page', 'custom-fields');
         remove_post_type_support('page', 'editor');
+    }
+
+    /**
+     * Callback that adds the meta box.
+     */
+    protected function addMetaBox()
+    {
+        add_meta_box(
+            'lin3s-id-default-meta-box',
+            'LIN3S INFO',
+            [$this, 'metaBox'],
+            'page'
+        );
+    }
+
+    /**
+     * Callback that prints the meta box.
+     *
+     * @param mixed  $post The post
+     * @param string $box  The box
+     */
+    protected function metaBox($post, $box)
+    {
+        echo <<<EOF
+<h1 style="text-align: center;">
+    PLEASE ADD <strong>PAGE TITLE</strong> AND SELECT A TEMPLATE IN THE <strong>TEMPLATE SELECTOR</strong>
+</h1>
+EOF;
     }
 }
