@@ -77,7 +77,7 @@ abstract class PageFields extends Fields
     /**
      * Callback that adds the meta box.
      */
-    protected function addMetaBox()
+    public function addMetaBox()
     {
         add_meta_box(
             'lin3s-id-default-meta-box',
@@ -93,7 +93,7 @@ abstract class PageFields extends Fields
      * @param mixed  $post The post
      * @param string $box  The box
      */
-    protected function metaBox($post, $box)
+    public function metaBox($post, $box)
     {
         echo <<<EOF
 <h1 style="text-align: center;">
