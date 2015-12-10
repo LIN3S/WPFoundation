@@ -21,6 +21,16 @@ namespace LIN3S\WPFoundation\PostTypes\Fields;
 abstract class CustomPostTypeFields extends Fields
 {
     /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        add_action('admin_init', [$this, 'removeScreenAttributes']);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function connector()

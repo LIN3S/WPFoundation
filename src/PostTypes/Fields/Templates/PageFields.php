@@ -23,6 +23,26 @@ use LIN3S\WPFoundation\PostTypes\Fields\Fields;
 abstract class PageFields extends Fields
 {
     /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $newPostId = filter_input(INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT);
+        $updatePostId = filter_input(INPUT_POST, 'post_ID', FILTER_SANITIZE_NUMBER_INT);
+
+        if (isset($newPostId)) {
+            $postId = absint($newPostId);
+        } elseif (isset($updatePostId)) {
+            $postId = absint($updatePostId);
+        }
+        if (false === isset($postId) || $this->name === get_post_meta($postId, '_wp_page_template', true)) {
+            add_action('admin_init', [$this, 'removeScreenAttributes']);
+        }
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function connector()

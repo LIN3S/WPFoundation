@@ -39,23 +39,6 @@ abstract class Fields implements FieldsInterface
         if (false === is_admin()) {
             return;
         }
-
-        $newPostId = filter_input(INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT);
-        $updatePostId = filter_input(INPUT_POST, 'post_ID', FILTER_SANITIZE_NUMBER_INT);
-
-        if (isset($newPostId)) {
-            $postId = absint($newPostId);
-        } else if (isset($updatePostId)) {
-            $postId = absint($updatePostId);
-        } else {
-            return;
-        }
-
-        if (isset($postId)) {
-            if ($this->name === get_post_meta($postId, '_wp_page_template', true)) {
-                add_action('admin_init', [$this, 'removeScreenAttributes']);
-            }
-        }
     }
 
     /**
@@ -79,6 +62,7 @@ abstract class Fields implements FieldsInterface
      */
     public function components()
     {
+        return [];
     }
 
     /**
