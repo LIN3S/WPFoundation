@@ -19,7 +19,7 @@ namespace LIN3S\WPFoundation\PostTypes\Fields\Components;
  * @author Beñat Espiña <benatespina@gmail.com>
  * @author Gorka Laucirica <gorkalaucirica@gmail.com>
  */
-abstract class FieldComponent implements FieldComponentInterface
+abstract class FieldComponent
 {
     /**
      * {@inheritdoc}
@@ -31,7 +31,7 @@ abstract class FieldComponent implements FieldComponentInterface
             $definition['location'] = $aConnector;
             acf_add_local_field_group($definition);
         } else {
-            //@deprecated Will be removed in 2.0
+            //@deprecated Will be removed in 2.0, and this class will implement FieldComponentInterface
             return new static($aName, $aConnector);
         }
     }
