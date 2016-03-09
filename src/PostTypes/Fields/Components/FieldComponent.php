@@ -26,7 +26,7 @@ abstract class FieldComponent
      */
     public static function register($aName, $aConnector)
     {
-        if (method_exists(get_class(), 'definition')) {
+        if (method_exists(static::class, 'definition')) {
             $definition = static::definition($aName);
             $definition['location'] = $aConnector;
             acf_add_local_field_group($definition);
