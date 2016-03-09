@@ -17,22 +17,29 @@ namespace LIN3S\WPFoundation\PostTypes\Fields\Components;
  * construct by register method.
  *
  * @author Beñat Espiña <benatespina@gmail.com>
+ * @author Gorka Laucirica <gorkalaucirica@gmail.com>
  */
 abstract class FieldComponent
 {
     /**
-     * Static naming constructor.
-     *
-     * @param string $aName      The name
-     * @param mixed  $aConnector The connector
+     * {@inheritdoc}
      */
     public static function register($aName, $aConnector)
     {
-        new static($aName, $aConnector);
+        if (method_exists(get_class(), 'definition')) {
+            $definition = static::definition($aName);
+            $definition['location'] = $aConnector;
+            acf_add_local_field_group($definition);
+        } else {
+            //@deprecated Will be removed in 2.0, and this class will implement FieldComponentInterface
+            return new static($aName, $aConnector);
+        }
     }
 
     /**
      * Constructor.
+     *
+     * @deprecated since version 1.4, will be removed in 2.0. Implement register() instead.
      */
     protected function __construct()
     {
