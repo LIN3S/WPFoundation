@@ -1,6 +1,6 @@
 {
     "name": "lin3s/wp-foundation",
-    "description": "Helper classes for building Wordpress theme in the LIN3S way",
+    "description": "Helper classes for building WordPress theme in the LIN3S way",
     "keywords": ["lin3s", "wordpress", "foundation", "helpers"],
     "type": "library",
     "license": "MIT",
@@ -12,21 +12,28 @@
         }
     ],
     "require": {
-        "php":                     ">=5.5"
+        "php": "^5.5|^7.0"
     },
     "require-dev": {
-        "phpspec/phpspec":         "^2.3",
-        "lin3s/wp-phpspec-brigde": "^0.1"
+        "fabpot/php-cs-fixer": "^1.11",
+        "lin3s/wp-phpspec-brigde": "^0.1",
+        "phpspec/phpspec": "^2.5"
+    },
+    "scripts": {
+        "cs": [
+            "php-cs-fixer fix --config-file=.php_cs",
+            "php-cs-fixer fix --config-file=.phpspec_cs"
+        ],
+        "test": "phpspec run"
     },
     "autoload": {
         "psr-4": {
-            "LIN3S\\WPFoundation\\": "src/"
+            "LIN3S\\WPFoundation\\": "src/LIN3S/WPFoundation/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "spec\\LIN3S\\WPFoundation\\": "spec/",
-            "fixtures\\LIN3S\\WPFoundation\\": "spec/fixtures/"
+            "fixtures\\LIN3S\\WPFoundation\\": "fixtures/LIN3S/WPFoundation/"
         }
     }
 }
