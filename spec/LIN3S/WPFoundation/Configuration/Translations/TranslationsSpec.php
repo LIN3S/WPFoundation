@@ -1,12 +1,12 @@
 <?php
 
 /*
- * * This file is part of the WPFoundation library.
- *  *
- *  * Copyright (c) 2015-2016 LIN3S <info@lin3s.com>
- *  *
- *  * For the full copyright and license information, please view the LICENSE
- *  * file that was distributed with this source code.
+ * This file is part of the WPFoundation library.
+ *
+ * Copyright (c) 2015-2016 LIN3S <info@lin3s.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace spec\LIN3S\WPFoundation\Configuration\Translations;
@@ -37,7 +37,7 @@ class TranslationsSpec extends ObjectBehavior
 
     function it_trans_returns_translation()
     {
-        include_once __DIR__ . '/../../../../../vendor/lin3s/wp-phpspec-brigde/src/Wpml.php';
+        include_once __DIR__ . '/../../../../../vendor/lin3s/wp-phpspec-brigde/src/LIN3S/WordPressPhpSpecBridge/Wpml.php';
 
         $this->trans('dummy-key')->shouldReturn('translation of dummy-key');
     }
