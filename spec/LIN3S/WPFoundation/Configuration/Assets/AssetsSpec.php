@@ -40,8 +40,13 @@ class AssetsSpec extends ObjectBehavior
         $this->adminAssets();
     }
 
-    function it_should_be_assets()
+    function it_should_be_development_assets()
     {
-        $this->assets();
+        $this->developmentAssets();
+    }
+
+    function it_should_be_production_assets()
+    {
+        $this->productionAssets();
     }
 }

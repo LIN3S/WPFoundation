@@ -67,8 +67,7 @@ final class MyAwesomeAjax extends Ajax
     {
         (...)
 
-        echo 'returning data'
-        die();
+        die('returning data');
     }
 }
 ```
@@ -84,9 +83,17 @@ final class Assets extends BaseAssets
     /**
      * {@inheritdoc}
      */
-    public function assets()
+    public function productionAssets()
     {
-        if (WP_DEBUG) {
+        $this
+            ->addScript('app.min', self::BUILD_JS, ['jquery', 'jquery.counterup', 'sidr']);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function developmentAssets()
+    {
             $this
                 ->addScript('jquery.sidr.min', self::VENDOR . '/sidr')
                 ->addScript('waypoints', self::VENDOR . '/jquery-waypoints')
@@ -95,10 +102,6 @@ final class Assets extends BaseAssets
                 ->addScript('accordion')
                 ->addScript('counter', self::ASSETS_JS, ['jquery', 'jquery.sidr.min', 'waypoints', 'jquery.counterup'])
                 ->addScript('typekit', self::ASSETS_JS, [], '1.0.0', false);
-
-        } else {
-            $this->addScript('app.min', self::BUILD_JS, ['jquery', 'jquery.counterup', 'sidr']);
-        }
     }
 
     /**
@@ -334,7 +337,7 @@ final class CustomFieldComponent extends FieldComponent
     public static function definition($aName)
     {
         return [
-            'key'      => sprintf('field_%s_component', $aName),
+            'key' => sprintf('field_%s_component', $aName),
             
             (...)
         ]);

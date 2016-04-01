@@ -23,7 +23,16 @@ class Assets extends BaseAssets
     /**
      * {@inheritdoc}
      */
-    public function assets()
+    public function productionAssets()
+    {
+        $this->addScript('app');
+        $this->addStylesheet('app');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function developmentAssets()
     {
         $this->addScript('app');
         $this->addStylesheet('app');

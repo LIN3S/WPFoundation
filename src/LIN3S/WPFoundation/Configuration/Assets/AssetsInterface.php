@@ -1,12 +1,12 @@
 <?php
 
 /*
- * * This file is part of the WPFoundation library.
- *  *
- *  * Copyright (c) 2015-2016 LIN3S <info@lin3s.com>
- *  *
- *  * For the full copyright and license information, please view the LICENSE
- *  * file that was distributed with this source code.
+ * This file is part of the WPFoundation library.
+ *
+ * Copyright (c) 2015-2016 LIN3S <info@lin3s.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace LIN3S\WPFoundation\Configuration\Assets;
@@ -27,14 +27,24 @@ interface AssetsInterface
     const NPM = '../node_modules';
 
     /**
-     * Registers all the scripts and stylesheet files.
-     * It's a callback of Wordpress internal "wp_enqueue_scripts" method.
+     * Registers all the scripts and stylesheet files that they
+     * are going to be execute when the WP_DEBUG is "true". Development mode.
+     *
+     * It's a callback of WordPress internal "wp_enqueue_scripts" method.
      */
-    public function assets();
+//    public function developmentAssets();
+
+    /**
+     * Registers all the scripts and stylesheet files that they
+     * are going to be execute when the WP_DEBUG is "false". Production mode.
+     *
+     * It's a callback of WordPress internal "wp_enqueue_scripts" method.
+     */
+//    public function productionAssets();
 
     /**
      * Registers all the scripts and stylesheet files used in wp-admin.
-     * It's a callback of Wordpress internal "admin_enqueue_scripts" method.
+     * It's a callback of WordPress internal "admin_enqueue_scripts" method.
      */
     public function adminAssets();
 }
