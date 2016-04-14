@@ -12,7 +12,7 @@
 namespace LIN3S\WPFoundation\Twig;
 
 /**
- * Twig function to use in Twig templates that add TagManager container adding the following code:.
+ * Twig function to use in Twig templates that add TagManager container adding the following code.
  *
  *     {{ tagManager('GTM-XXXXXX') }}
  *
@@ -28,7 +28,7 @@ class TagManagerTwig
      */
     public function __construct()
     {
-        add_action('twig_apply_filters', function ($twig) {
+        add_action('twig_apply_filters', function (\Twig_Environment $twig) {
             $twig->addFunction(new \Twig_SimpleFunction('tagManager', [$this, 'tagManagerFunction']));
 
             return $twig;

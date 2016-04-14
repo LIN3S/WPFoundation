@@ -14,7 +14,7 @@ namespace LIN3S\WPFoundation\Twig;
 use LIN3S\WPFoundation\Configuration\Translations\Translations;
 
 /**
- * Twig function to use in Twig templates that translates in an easy way the string literals:.
+ * Twig function to use in Twig templates that translates in an easy way the string literals.
  *
  *     {{ trans('Your awesome name') }}
  *
@@ -29,7 +29,7 @@ class TranslationTwig
      */
     public function __construct()
     {
-        add_action('twig_apply_filters', function ($twig) {
+        add_action('twig_apply_filters', function (\Twig_Environment $twig) {
             $twig->addFunction(new \Twig_SimpleFunction('trans', function ($key) {
                 return Translations::trans($key);
             }));
