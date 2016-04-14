@@ -27,6 +27,7 @@ abstract class CustomPostTypeFields extends Fields
     {
         parent::__construct();
 
+        add_action('admin_init', [$this, 'addScreenAttributes']);
         add_action('admin_init', [$this, 'removeScreenAttributes']);
     }
 

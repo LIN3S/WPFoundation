@@ -40,6 +40,7 @@ abstract class PageFields extends Fields
             add_action('add_meta_boxes', [$this, 'addMetaBox']);
         }
         if (false === isset($postId) || $this->name === get_post_meta($postId, '_wp_page_template', true)) {
+            add_action('admin_init', [$this, 'addScreenAttributes']);
             add_action('admin_init', [$this, 'removeScreenAttributes']);
         }
     }

@@ -39,6 +39,12 @@ interface FieldsInterface
     public function connector();
 
     /**
+     * Adds the screen attributes from admin post type view calling
+     * the WordPress internal "add_post_type_support" method.
+     */
+    public function addScreenAttributes();
+
+    /**
      * Removes the screen attributes from admin post type view calling
      * the WordPress internal "remove_post_type_support" method.
      */

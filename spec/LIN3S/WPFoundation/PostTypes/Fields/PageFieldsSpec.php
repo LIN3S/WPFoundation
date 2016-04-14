@@ -59,6 +59,11 @@ class PageFieldsSpec extends ObjectBehavior
         ]);
     }
 
+    function it_should_be_add_screen_attributes()
+    {
+        $this->addScreenAttributes();
+    }
+
     function it_should_be_remove_screen_attributes()
     {
         $this->removeScreenAttributes();
