@@ -52,7 +52,7 @@ abstract class CustomPostTypeFields extends Fields
      */
     public function removeScreenAttributes()
     {
-        remove_post_type_support('page', 'comments');
-        remove_post_type_support('page', 'custom-fields');
+        remove_post_type_support($this->name, 'comments');
+        remove_post_type_support($this->name, 'custom-fields');
     }
 }
