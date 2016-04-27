@@ -98,10 +98,14 @@ final class Assets extends BaseAssets
                 ->addScript('jquery.sidr.min', self::VENDOR . '/sidr')
                 ->addScript('waypoints', self::VENDOR . '/jquery-waypoints')
                 ->addScript('jquery.counterup', self::VENDOR . '/Counter-Up')
+
+                ->addScript('counter', self::ASSETS_JS, ['jquery', 'jquery.sidr.min', 'waypoints', 'jquery.counterup'])
+                ->addScript('typekit', self::ASSETS_JS, [], '1.0.0', false)
+
                 ->addScript('menu')
                 ->addScript('accordion')
-                ->addScript('counter', self::ASSETS_JS, ['jquery', 'jquery.sidr.min', 'waypoints', 'jquery.counterup'])
-                ->addScript('typekit', self::ASSETS_JS, [], '1.0.0', false);
+
+                ->addScript('post-ajax', self::ASSETS_JS, [], '1.0.0', false, 'postsAjax')
     }
 
     /**
@@ -522,14 +526,6 @@ final class SocialNetworksWidget extends Widget
         ];
 
         return $instance;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function register()
-    {
-        register_widget('\MyAwesomeProject\Widgets\SocialNetworksWidget');
     }
 }
 ```
