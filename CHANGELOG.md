@@ -10,6 +10,7 @@ To get the diff between two versions, go to https://github.com/LIN3S/WPFoundatio
     * Added protected method `registerAjaxUrls` in `Assets` that is invoked as sixth parameter inside `addScript` method.
     * Deprecated `assets` method inside `Assets`class.
     * Added `addScreenAttributes` to `FieldsInterface`.
+    * Fixed `CustomPostTypeFields` `removeScreenAttributes` function.
 * 1.4.1
     * Fixed issues due to wrong check for `FieldComponentInterface::definition()` existence in child class
     * Now PHP 5.5 is required due to class name resolution via ::class used in `FieldComponent` class
