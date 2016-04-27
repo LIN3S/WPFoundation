@@ -47,4 +47,12 @@ abstract class Widget extends \WP_Widget implements WidgetInterface
     {
         return $this->number;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function register()
+    {
+        register_widget(static::class);
+    }
 }
