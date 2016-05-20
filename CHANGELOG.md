@@ -5,6 +5,8 @@ This changelog references the relevant changes done in 1.0 and its minor version
 To get the diff for a specific change, go to https://github.com/LIN3S/WPFoundation/commit/XXX where XXX is the change hash 
 To get the diff between two versions, go to https://github.com/LIN3S/WPFoundation/compare/v1.0.0...v1.0.1
 
+* 1.6.0
+    * WPTemplateSelector is now an included feature.
 * 1.5.0
     * Added `developmentAssets` and `productionAssets` methods inside `AssetsInterface`.
     * Added protected method `registerAjaxUrls` in `Assets` that is invoked as sixth parameter inside `addScript` method.

@@ -28,9 +28,9 @@ abstract class Theme implements ThemeInterface
     {
         $this->acf();
         $this->classes();
+        $this->templateSelector();
         add_theme_support('post-thumbnails');
         add_filter('timber_context', [$this, 'context']);
-        add_filter('template_selector_available', [$this, 'templates']);
     }
 
     /**
@@ -41,5 +41,16 @@ abstract class Theme implements ThemeInterface
         new Wysiwyg([
             'lin3s' => [1 => ['bold', 'italic', 'bullist', 'numlist', 'link', 'unlink']],
         ]);
+    }
+
+    /**
+     * Filters the selectable templates.
+     */
+    private function templateSelector()
+    {
+        $self = $this;
+        add_filter('theme_page_templates', function() use ($self) {
+            return $self->templates([]);
+        });
     }
 }
