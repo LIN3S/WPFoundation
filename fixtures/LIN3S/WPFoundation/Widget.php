@@ -20,10 +20,4 @@ use LIN3S\WPFoundation\Widgets\Widget as BaseWidget;
  */
 class Widget extends BaseWidget
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function register()
-    {
-    }
 }
