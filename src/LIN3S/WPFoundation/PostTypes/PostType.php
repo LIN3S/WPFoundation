@@ -29,6 +29,7 @@ abstract class PostType implements PostTypeInterface
         add_action('init', [$this, 'postType']);
         add_action('init', [$this, 'taxonomyType']);
         add_action('init', [$this, 'fields'], 20);
+        add_action('init', [$this, 'rewriteRules'], 20);
 
         add_filter('post_type_link', [$this, 'permalink'], 1, 2);
         add_filter('term_link', [$this, 'taxonomyPermalink'], 1, 2);
