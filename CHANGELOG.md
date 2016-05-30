@@ -7,6 +7,7 @@ To get the diff between two versions, go to https://github.com/LIN3S/WPFoundatio
 
 * 1.6.0
     * WPTemplateSelector is now an included feature.
+    * Fixed call of `rewriteRules` method inside PostType base class.
 * 1.5.0
     * Added `developmentAssets` and `productionAssets` methods inside `AssetsInterface`.
     * Added protected method `registerAjaxUrls` in `Assets` that is invoked as sixth parameter inside `addScript` method.
