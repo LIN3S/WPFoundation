@@ -23,7 +23,7 @@ namespace LIN3S\WPFoundation\Configuration\Mailer;
  *
  * @author Gorka Laucirica <gorka.lauzirika@gmail.com>
  */
-class LocalMailer
+final class LocalMailer
 {
     /**
      * Constructor.
