@@ -49,7 +49,7 @@ abstract class Theme implements ThemeInterface
     private function templateSelector()
     {
         $self = $this;
-        add_filter('theme_page_templates', function() use ($self) {
+        add_filter('theme_page_templates', function () use ($self) {
             return $self->templates([]);
         });
     }
