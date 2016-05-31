@@ -120,7 +120,11 @@ final class Assets extends BaseAssets
 ```
 
 ### Mailer
-After instantiate the Mailer into the theme...
+`Mailer` class configures the way that emails are sent using `wp_mail()`. After v1.6.0 a `LocalMailer` strategy was 
+implemented as an alternative. Make sure you don´t use them together.
+
+You can define your own custom mailer that implements `MailInterface` and uses `wp_mail()` configuration selected 
+creating an instance of one of the two strategies above.
 ```php
 (...)
 
