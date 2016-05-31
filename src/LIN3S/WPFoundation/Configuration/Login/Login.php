@@ -43,12 +43,12 @@ abstract class Login implements LoginInterface
      */
     public function logo()
     {
-        $url = $this->logoPath();
+        $logoPath = $this->logoPath();
 
         echo <<<EOL
 <style type="text/css">
     #login h1 a, .login h1 a {
-        background-image: url($url);
+        background-image: url($logoPath);
         background-position: center;
         margin: 0 auto;
         width: 100px;
