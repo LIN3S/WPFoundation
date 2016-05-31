@@ -31,6 +31,7 @@ The following code snippets are representative code samples of how can it use th
 1. Ajax
   * [Ajax](#ajax)
 2. Configuration
+  * [ACF](#acf)
   * [Assets](#assets)
   * [Mailer](#mailer)
   * [Menus](#menus)
@@ -68,6 +69,28 @@ final class MyAwesomeAjax extends Ajax
         (...)
 
         die('returning data');
+    }
+}
+```
+
+###ACF
+WYSIWYG configuration for acf fields is provided within LIN3S' WPFoundation. This allows to have seamlessly multiple
+configuration for this type field used by ACF
+
+This configuration is added by default in base `Theme` as you can find under `LIN3S/WPFoundation/Configuration/Theme/Theme`
+namespace. To override this config override `acf()` method as follows to add your config:
+ 
+```php
+use LIN3S/WPFoundation/Configuration/Theme/Theme;
+
+final class MyCustomTheme extends Theme 
+{
+    protected function acf()
+    {
+        new Wysiwyg([
+            'basic' => [1 => ['bold', 'italic']],
+            'lin3s' => [1 => ['bold', 'italic', 'bullist', 'numlist', 'link', 'unlink']],
+        ]);
     }
 }
 ```
