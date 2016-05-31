@@ -81,10 +81,15 @@ This configuration is added by default in base `Theme` as you can find under `LI
 namespace. To override this config override `acf()` method as follows to add your config:
  
 ```php
+(...)
+
 use LIN3S/WPFoundation/Configuration/Theme/Theme;
 
 final class MyCustomTheme extends Theme 
 {
+    /**
+     * {@inheritdoc}
+     */
     protected function acf()
     {
         new Wysiwyg([
