@@ -49,9 +49,13 @@ abstract class Login implements LoginInterface
 <style type="text/css">
     #login h1 a, .login h1 a {
         background-image: url($url);
-        background-size: 179px;
-        width: 179px;
+        background-position: center;
+        margin: 0 auto;
+        width: 100px;
     };
+    #loginform {
+        margin-top: 0;
+    }
 </style>;
 EOL;
     }
