@@ -29,6 +29,7 @@ abstract class Theme implements ThemeInterface
         $this->acf();
         $this->classes();
         $this->templateSelector();
+        $this->xmlrpc();
         add_theme_support('post-thumbnails');
         add_filter('timber_context', [$this, 'context']);
     }
@@ -52,5 +53,16 @@ abstract class Theme implements ThemeInterface
         add_filter('theme_page_templates', function () use ($self) {
             return $self->templates([]);
         });
+    }
+
+    /**
+     * Enables or disables XML-RPC feature.
+     */
+    private function xmlrpc()
+    {
+        $xmlrpc = !defined('XMLRPC_ENABLED') || XMLRPC_ENABLED === true
+            ? '__return_true'
+            : '__return_false';
+        add_filter('xmlrpc_enabled', $xmlrpc);
     }
 }

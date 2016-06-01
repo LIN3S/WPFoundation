@@ -10,6 +10,7 @@ To get the diff between two versions, go to https://github.com/LIN3S/WPFoundatio
     * Fixed call of `rewriteRules` method inside PostType base class.
     * Added foundations for login page customization using `Login` abstract class.
     * Added `LocalMailer` as an alternative to `Mailer` for mail sending strategies.
+    * Added `xmlrpc_enabled` filter that reads XMLRPC_ENABLED global flag.
 * 1.5.0
     * Added `developmentAssets` and `productionAssets` methods inside `AssetsInterface`.
     * Added protected method `registerAjaxUrls` in `Assets` that is invoked as sixth parameter inside `addScript` method.
