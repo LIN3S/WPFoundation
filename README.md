@@ -176,6 +176,8 @@ final class ContactMail implements MailInterface
 }
 ```
 
+> `MailerInterface` is deprecated and will be removed in v2.0.0. Use wp_mail() directly to send the emails
+
 ###Menus
 ```php
 (...)
