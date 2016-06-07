@@ -26,6 +26,7 @@ namespace LIN3S\WPFoundation\Configuration\Mailer;
  * Remember to add this class to your theme constructor.
  *
  * @author Gorka Laucirica <gorka.lauzirika@gmail.com>
+ * @author Jon Torrado <jontorrado@gmail.com>
  */
 final class Mailer
 {
@@ -44,15 +45,15 @@ final class Mailer
      */
     public function mailer($phpMailer)
     {
-        $phpMailer->isSMTP();
+        if (MAILER_SMTP) {
+            $phpMailer->isSMTP();
+            $phpMailer->SMTPAuth = true;
+        }
         $phpMailer->Host = MAILER_HOST;
-        $phpMailer->SMTPAuth = true;
         $phpMailer->Port = MAILER_PORT;
         $phpMailer->Username = MAILER_USERNAME;
         $phpMailer->Password = MAILER_PASSWORD;
-        $phpMailer->SMTPSecure = 'tls';
-
-        $phpMailer->From = MAILER_FROM;
-        $phpMailer->FromName = MAILER_FROM_NAME;
+        $phpMailer->SMTPSecure = MAILER_TRANSPORT;
+        $phpMailer->Sender = $phpMailer->From;
     }
 }
