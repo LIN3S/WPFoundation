@@ -148,8 +148,8 @@ final class Assets extends BaseAssets
 ```
 
 ### Mailer
-`Mailer` class configures the way that emails are sent using `wp_mail()`. After v1.6.0 a `LocalMailer` strategy was 
-implemented as an alternative. Make sure you don´t use them together.
+`Mailer` class configures the way that emails are sent using `wp_mail()`. You should configure the mailer parameters
+editing the WordPress config file. Default parameters are given for the localhost smtp delivery.
 
 You can define your own custom mailer that implements `MailInterface` and uses `wp_mail()` configuration selected 
 creating an instance of one of the two strategies above.
