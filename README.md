@@ -74,28 +74,24 @@ final class MyAwesomeAjax extends Ajax
 ```
 
 ###ACF
-WYSIWYG configuration for acf fields is provided within LIN3S' WPFoundation. This allows to have seamlessly multiple
-configuration for this type field used by ACF
-
-This configuration is added by default in base `Theme` as you can find under `LIN3S/WPFoundation/Configuration/Theme/Theme`
-namespace. To override this config override `acf()` method as follows to add your config:
- 
+ACF configuration class, this class is responsible for all the logic about this WordPress plugin. A this moment this
+API only has one method that allows to have seamlessly multiple WYSWYG configuration for this type field used by ACF.
 ```php
 (...)
 
-use LIN3S/WPFoundation/Configuration/Theme/Theme;
+use LIN3S/WPFoundation/Configuration/Acf/Acf;
 
-final class MyCustomTheme extends Theme 
+final class Acf extends BaseAcf
 {
     /**
      * {@inheritdoc}
      */
-    protected function acf()
+    protected function wyswygToolbars()
     {
-        new Wysiwyg([
+        return [
             'basic' => [1 => ['bold', 'italic']],
             'lin3s' => [1 => ['bold', 'italic', 'bullist', 'numlist', 'link', 'unlink']],
-        ]);
+        ];
     }
 }
 ```
@@ -214,7 +210,7 @@ final class AwesomeTheme extends Theme
     public function classes()
     {
         new Assets();
-        new ImageSizes();
+        new Acf();
         new Mailer();
         new Menus();
 

@@ -15,7 +15,6 @@ use fixtures\LIN3S\WPFoundation\Login;
 use LIN3S\WPFoundation\Configuration\Login\Login as BaseLogin;
 use LIN3S\WPFoundation\Configuration\Login\LoginInterface;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 /**
  * Spec of Login class.

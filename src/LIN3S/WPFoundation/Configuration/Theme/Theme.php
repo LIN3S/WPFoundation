@@ -11,8 +11,6 @@
 
 namespace LIN3S\WPFoundation\Configuration\Theme;
 
-use LIN3S\WPFoundation\Configuration\Acf\Wysiwyg;
-
 /**
  * Abstract class of theme that implements the interface.
  * This class avoids the use of callbacks in the constructor.
@@ -26,22 +24,15 @@ abstract class Theme implements ThemeInterface
      */
     public function __construct()
     {
-        $this->acf();
         $this->classes();
         $this->templateSelector();
         $this->xmlrpc();
         add_theme_support('post-thumbnails');
         add_filter('timber_context', [$this, 'context']);
-    }
 
-    /**
-     * All about ACF configuration should be instantiated here.
-     */
-    protected function acf()
-    {
-        new Wysiwyg([
-            'lin3s' => [1 => ['bold', 'italic', 'bullist', 'numlist', 'link', 'unlink']],
-        ]);
+        // @deprecated since version 1.6, will be removed in 2.0. Extend the ACF class in your project and instantiate
+        // inside your project Theme.
+        $this->acf();
     }
 
     /**
@@ -64,5 +55,20 @@ abstract class Theme implements ThemeInterface
             ? '__return_true'
             : '__return_false';
         add_filter('xmlrpc_enabled', $xmlrpc);
+    }
+
+    /**
+     * @deprecated since version 1.6, will be removed in 2.0. Extend the ACF class in your project and instantiate
+     *             inside your project Theme.
+     */
+    protected function acf()
+    {
+        $customToolbars = [
+            'lin3s' => [1 => ['bold', 'italic', 'bullist', 'numlist', 'link', 'unlink']],
+        ];
+
+        add_filter('acf/fields/wysiwyg/toolbars', function (array $toolbars) use ($customToolbars) {
+            return array_merge($toolbars, $customToolbars);
+        });
     }
 }
