@@ -79,14 +79,14 @@ API only has one method that allows to have seamlessly multiple WYSWYG configura
 ```php
 (...)
 
-use LIN3S/WPFoundation/Configuration/Acf/Acf;
+use LIN3S\WPFoundation\Configuration\Acf\Acf;
 
 final class Acf extends BaseAcf
 {
     /**
      * {@inheritdoc}
      */
-    protected function wyswygToolbars()
+    public function wyswygToolbars()
     {
         return [
             'basic' => [1 => ['bold', 'italic']],
