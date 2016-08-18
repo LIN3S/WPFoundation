@@ -38,7 +38,7 @@ class Translations implements TranslationsInterface
             return $key;
         }
 
-        if (false === icl_t(self::domain(), $key)) {
+        if (empty(icl_t(self::domain(), $key))) {
             icl_register_string(self::domain(), $key, $key);
 
             return $key;
