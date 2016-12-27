@@ -56,7 +56,7 @@ abstract class Login implements LoginInterface
     #loginform {
         margin-top: 0;
     }
-</style>;
+</style>
 EOL;
     }
 
