@@ -12,16 +12,11 @@
 namespace LIN3S\WPFoundation\Configuration\Login;
 
 /**
- * Base class that offers some method to customize easily WordPress login page.
- *
  * @author Jon Torrado <jontorrado@gmail.com>
  * @author Beñat Espiña <benatespina@gmail.com>
  */
 abstract class Login implements LoginInterface
 {
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         add_filter('login_errors', [$this, 'errors']);
@@ -31,17 +26,11 @@ abstract class Login implements LoginInterface
         add_filter('login_headerurl', [$this, 'url']);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function errors()
+    public function errors() : void
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function logo()
+    public function logo() : void
     {
         $logoPath = $this->logoPath();
 
@@ -60,25 +49,16 @@ abstract class Login implements LoginInterface
 EOL;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function message()
+    public function message() : void
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function title()
+    public function title() : string
     {
         return get_bloginfo();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function url()
+    public function url() : string
     {
         return home_url();
     }

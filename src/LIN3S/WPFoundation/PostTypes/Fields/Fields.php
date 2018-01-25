@@ -14,23 +14,12 @@ namespace LIN3S\WPFoundation\PostTypes\Fields;
 use LIN3S\WPFoundation\PostTypes\Fields\Components\FieldComponent;
 
 /**
- * Abstract class of base custom fields that implements the interface.
- * This class avoids the redundant task of create the same Fields constructor.
- *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
 abstract class Fields implements FieldsInterface
 {
-    /**
-     * The template name.
-     *
-     * @var string
-     */
     protected $name;
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         $this->fields();
@@ -41,10 +30,7 @@ abstract class Fields implements FieldsInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function fields()
+    public function fields() : void
     {
         foreach ($this->components() as $component) {
             if (false === class_exists($component)) {
@@ -57,25 +43,16 @@ abstract class Fields implements FieldsInterface
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function components()
+    public function components() : array
     {
         return [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function addScreenAttributes()
+    public function addScreenAttributes() : void
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function removeScreenAttributes()
+    public function removeScreenAttributes() : void
     {
     }
 }

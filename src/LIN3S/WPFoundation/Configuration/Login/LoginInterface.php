@@ -12,43 +12,20 @@
 namespace LIN3S\WPFoundation\Configuration\Login;
 
 /**
- * Login interface that offers a set of
- * methods to customize the WordPress login page.
- *
  * @author Jon Torrado <jontorrado@gmail.com>
  * @author Beñat Espiña <benatespina@gmail.com>
  */
 interface LoginInterface
 {
-    /**
-     * Gets the logo directory path.
-     *
-     * @returns string
-     */
-    public function logoPath();
+    public function logoPath() : string;
 
-    /**
-     * Customizes the error messages.
-     */
-    public function errors();
+    public function errors() : void;
 
-    /**
-     * Customizes the logo.
-     */
-    public function logo();
+    public function logo() : void;
 
-    /**
-     * Customizes the login message.
-     */
-    public function message();
+    public function message() : void;
 
-    /**
-     * Customizes the login title.
-     */
-    public function title();
+    public function title() : string;
 
-    /**
-     * Customizes the home url of login page.
-     */
-    public function url();
+    public function url() : string;
 }

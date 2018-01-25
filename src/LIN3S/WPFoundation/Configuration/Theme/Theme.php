@@ -12,63 +12,44 @@
 namespace LIN3S\WPFoundation\Configuration\Theme;
 
 /**
- * Abstract class of theme that implements the interface.
- * This class avoids the use of callbacks in the constructor.
- *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
 abstract class Theme implements ThemeInterface
 {
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         $this->classes();
-        $this->templateSelector();
         $this->xmlrpc();
+
+        add_action('admin_head', [$this, 'adminHead']);
+
         add_theme_support('post-thumbnails');
+
+        add_filter('theme_page_templates', [$this, 'templates']);
         add_filter('timber_context', [$this, 'context']);
-
-        // @deprecated since version 1.6, will be removed in 2.0. Extend the ACF class in your project and instantiate
-        // inside your project Theme.
-        $this->acf();
     }
 
-    /**
-     * Filters the selectable templates.
-     */
-    private function templateSelector()
+    public function context(array $context) : array
     {
-        $self = $this;
-        add_filter('theme_page_templates', function () use ($self) {
-            return $self->templates([]);
-        });
+        return $context;
     }
 
-    /**
-     * Enables or disables XML-RPC feature.
-     */
-    private function xmlrpc()
+    private function xmlrpc() : void
     {
         $xmlrpc = !defined('XMLRPC_ENABLED') || XMLRPC_ENABLED === true
             ? '__return_true'
             : '__return_false';
+
         add_filter('xmlrpc_enabled', $xmlrpc);
     }
 
-    /**
-     * @deprecated since version 1.6, will be removed in 2.0. Extend the ACF class in your project and instantiate
-     *             inside your project Theme
-     */
-    protected function acf()
+    protected function adminHead() : void
     {
-        $customToolbars = [
-            'lin3s' => [1 => ['bold', 'italic', 'bullist', 'numlist', 'link', 'unlink']],
-        ];
+        $this->removeOrderFromPostAttributesBox();
+    }
 
-        add_filter('acf/fields/wysiwyg/toolbars', function (array $toolbars) use ($customToolbars) {
-            return array_merge($toolbars, $customToolbars);
-        });
+    public function removeOrderFromPostAttributesBox() : void
+    {
+        echo '<style>label[for="menu_order"], input[name="menu_order"] {display:none;}</style>';
     }
 }

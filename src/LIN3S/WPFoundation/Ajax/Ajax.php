@@ -12,23 +12,12 @@
 namespace LIN3S\WPFoundation\Ajax;
 
 /**
- * Abstract class of AJAX class that implements the interface.
- * This class avoids the use of callbacks in the constructor.
- *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
 abstract class Ajax implements AjaxInterface
 {
-    /**
-     * The AJAX action name.
-     *
-     * @var string
-     */
     protected $action;
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         add_action('wp_ajax_nopriv_' . $this->action, [$this, 'ajax']);

@@ -19,34 +19,13 @@ namespace LIN3S\WPFoundation\PostTypes\Fields;
  */
 interface FieldsInterface
 {
-    /**
-     * Builds the post type fields.
-     */
-    public function fields();
+    public function fields() : void;
 
-    /**
-     * Returns array that contains the fully qualified namespaces of the field components.
-     *
-     * @return array
-     */
-    public function components();
+    public function components() : array;
 
-    /**
-     * Joins fields created in the "fields" method with the custom post type class.
-     *
-     * @return mixed
-     */
     public function connector();
 
-    /**
-     * Adds the screen attributes from admin post type view calling
-     * the WordPress internal "add_post_type_support" method.
-     */
-    public function addScreenAttributes();
+    public function addScreenAttributes() : void;
 
-    /**
-     * Removes the screen attributes from admin post type view calling
-     * the WordPress internal "remove_post_type_support" method.
-     */
-    public function removeScreenAttributes();
+    public function removeScreenAttributes() : void;
 }

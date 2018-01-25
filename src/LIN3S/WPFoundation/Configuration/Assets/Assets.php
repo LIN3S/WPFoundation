@@ -20,9 +20,6 @@ namespace LIN3S\WPFoundation\Configuration\Assets;
  */
 abstract class Assets implements AssetsInterface
 {
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         if (true === WP_DEBUG) {
@@ -31,52 +28,27 @@ abstract class Assets implements AssetsInterface
             add_action('wp_enqueue_scripts', [$this, 'productionAssets']);
         }
         add_action('admin_enqueue_scripts', [$this, 'adminAssets']);
-
-        // @deprecated since version 1.5, will be removed in 2.0. Implement productionAssets and developmentAssets instead.
-        add_action('wp_enqueue_scripts', [$this, 'assets']);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function developmentAssets()
+    public function developmentAssets() : void
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function productionAssets()
+    public function productionAssets() : void
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function adminAssets()
+    public function adminAssets() : void
     {
     }
 
-    /**
-     * Method that wraps the WordPress internal "wp_enqueue_script"
-     * simplifying the process adding some common default values.
-     *
-     * @param string            $name         The name of asset
-     * @param string            $from         The from location, by default is the JS files default location
-     * @param array             $dependencies Array which contains the dependencies of the given asset
-     * @param string            $version      The version, by default is "1.0.0"
-     * @param bool              $inFooter     Checks if the asset is going to be in the footer or not
-     * @param array|string|null $ajaxUrl      The ajax url to expose in JS files
-     *
-     * @return $this Self class instance
-     */
     protected function addScript(
-        $name,
-        $from = AssetsInterface::ASSETS_JS,
+        string $name,
+        string $from = AssetsInterface::ASSETS_JS,
         array $dependencies = ['jquery'],
-        $version = '1.0.0',
-        $inFooter = true,
-        $ajaxUrl = null
+        string $version = '1.0.0',
+        bool $inFooter = true,
+        ?string $ajaxUrl = null
     ) {
         wp_enqueue_script($name, $this->path($from, $name), $dependencies, $version, $inFooter);
 
@@ -87,51 +59,34 @@ abstract class Assets implements AssetsInterface
         return $this;
     }
 
-    /**
-     * Method that wraps the WordPress internal "wp_enqueue_style"
-     * simplifying the process adding some common default values.
-     *
-     * @param string $name         The name of asset
-     * @param string $from         The from location, by default is the CSS files default location
-     * @param array  $dependencies Array which contains the dependencies of the given asset, by default is empty
-     * @param string $version      The version, by default is "1.0.0"
-     * @param string $media        The media, by default is "all"
-     *
-     * @return $this Self class instance
-     */
     protected function addStylesheet(
-        $name,
-        $from = AssetsInterface::CSS,
+        string $name,
+        string $from = AssetsInterface::CSS,
         array $dependencies = [],
-        $version = '1.0.0',
-        $media = 'all'
+        string $version = '1.0.0',
+        string $media = 'all'
     ) {
         wp_enqueue_style($name, $this->path($from, $name, 'css'), $dependencies, $version, $media);
 
         return $this;
     }
 
-    /**
-     * Registers the ajax urls inside given JS filename.
+    /*
+     *  Usage example with name="subscribe" and ajaxUrl="subscribeAjax":
      *
-     * @param string $name    The script file name
-     * @param string $ajaxUrl The name that is going to expose in JS file as ajaxUrl
+     *      // subscribe.js
      *
-     *      Usage example with name="subscribe" and ajaxUrl="subscribeAjax":
-     *
-     *          // subscribe.js
-     *
-     *          $.ajax({
-     *              url: subscribeAjax.ajaxUrl,
-     *              method: 'GET',
-     *              data: {
-     *                  action: 'ajax-action-registered-in-your-php-file',
-     *              }
-     *          }).done(function (response) {
-     *             (...)
-     *          });
+     *      $.ajax({
+     *          url: subscribeAjax.ajaxUrl,
+     *          method: 'GET',
+     *          data: {
+     *              action: 'ajax-action-registered-in-your-php-file',
+     *          }
+     *      }).done(function (response) {
+     *         (...)
+     *      });
      */
-    protected function registerAjaxUrls($name, $ajaxUrl)
+    protected function registerAjaxUrls(string $name, string $ajaxUrl) : void
     {
         if (false === is_array($ajaxUrl)) {
             $ajaxUrl = [$ajaxUrl];
@@ -143,27 +98,8 @@ abstract class Assets implements AssetsInterface
         }
     }
 
-    /**
-     * Build dynamically the asset directory path with the given parameters.
-     *
-     * @param string $from     The from location
-     * @param string $name     The filename without extension
-     * @param string $fileType The file type, by default is "js"
-     *
-     * @return string
-     */
-    private function path($from, $name, $fileType = 'js')
+    private function path(string $from, string $name, string $fileType = 'js') : string
     {
         return get_template_directory_uri() . '/Resources/' . $from . '/' . $name . '.' . $fileType;
-    }
-
-    /**
-     * Registers all the scripts and stylesheet files.
-     * It's a callback of WordPress internal "wp_enqueue_scripts" method.
-     *
-     * @deprecated since version 1.5, will be removed in 2.0. Implement productionAssets and developmentAssets instead
-     */
-    public function assets()
-    {
     }
 }

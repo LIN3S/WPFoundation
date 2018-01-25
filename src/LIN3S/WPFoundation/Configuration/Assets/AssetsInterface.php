@@ -12,39 +12,20 @@
 namespace LIN3S\WPFoundation\Configuration\Assets;
 
 /**
- * Interface of assets class. This interface forces to register
- * all the scripts and stylesheet under assets method.
- *
  * @author Beñat Espiña <benatespina@gmail.com>
  * @author Gorka Laucirica <gorka.lauzirika@gmail.com>
  */
 interface AssetsInterface
 {
-    const ASSETS_JS = 'assets/js';
-    const BUILD_JS = 'build/js';
-    const CSS = 'build/css';
-    const VENDOR = 'assets/vendor';
-    const NPM = '../node_modules';
+    public const ASSETS_JS = 'assets/js';
+    public const BUILD_JS = 'build/js';
+    public const CSS = 'build/css';
+    public const VENDOR = 'assets/vendor';
+    public const NPM = '../node_modules';
 
-    /**
-     * Registers all the scripts and stylesheet files that they
-     * are going to be execute when the WP_DEBUG is "true". Development mode.
-     *
-     * It's a callback of WordPress internal "wp_enqueue_scripts" method.
-     */
-//    public function developmentAssets();
+    public function developmentAssets() : void;
 
-    /**
-     * Registers all the scripts and stylesheet files that they
-     * are going to be execute when the WP_DEBUG is "false". Production mode.
-     *
-     * It's a callback of WordPress internal "wp_enqueue_scripts" method.
-     */
-//    public function productionAssets();
+    public function productionAssets() : void;
 
-    /**
-     * Registers all the scripts and stylesheet files used in wp-admin.
-     * It's a callback of WordPress internal "admin_enqueue_scripts" method.
-     */
-    public function adminAssets();
+    public function adminAssets() : void;
 }

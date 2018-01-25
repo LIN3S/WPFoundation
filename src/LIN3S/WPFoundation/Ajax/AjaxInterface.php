@@ -12,15 +12,9 @@
 namespace LIN3S\WPFoundation\Ajax;
 
 /**
- * Interface of AJAX class. This interface forces to implement the ajax
- * method which is a callback of Wordpress AJAX action.
- *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
 interface AjaxInterface
 {
-    /**
-     * The Wordpress AJAX process callback method.
-     */
-    public function ajax();
+    public function ajax() : void;
 }

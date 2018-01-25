@@ -12,17 +12,9 @@
 namespace LIN3S\WPFoundation\Configuration\Acf;
 
 /**
- * Interface of ACF class. This interface forces to
- * implement the API of WPFoundation ACF bridge.
- *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
 interface AcfInterface
 {
-    /**
-     * Registers and customize the ACF WYSWYG toolbars.
-     *
-     * @return array
-     */
-    public function wyswygToolbars();
+    public function wyswygToolbars() : array;
 }
