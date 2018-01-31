@@ -27,7 +27,7 @@ abstract class Widget extends \WP_Widget implements WidgetInterface
      */
     public function __construct($id, $name, $description)
     {
-        parent::__construct($id, $name, ['description' => $description]);
+        parent::__construct($id, $name, $description);
 
         add_action('widgets_init', [$this, 'register']);
     }
