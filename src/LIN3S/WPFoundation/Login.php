@@ -9,14 +9,22 @@
  * file that was distributed with this source code.
  */
 
-namespace LIN3S\WPFoundation\Configuration\Login;
+declare(strict_types=1);
+
+namespace LIN3S\WPFoundation;
 
 /**
  * @author Jon Torrado <jontorrado@gmail.com>
  * @author Beñat Espiña <benatespina@gmail.com>
  */
-abstract class Login implements LoginInterface
+abstract class Login
 {
+    abstract public function logoPath() : string;
+
+    abstract public function errors() : void;
+
+    abstract public function message() : void;
+
     public function __construct()
     {
         add_filter('login_errors', [$this, 'errors']);
@@ -24,10 +32,6 @@ abstract class Login implements LoginInterface
         add_filter('login_message', [$this, 'message']);
         add_filter('login_headertitle', [$this, 'title']);
         add_filter('login_headerurl', [$this, 'url']);
-    }
-
-    public function errors() : void
-    {
     }
 
     public function logo() : void
@@ -47,10 +51,6 @@ abstract class Login implements LoginInterface
     }
 </style>
 EOL;
-    }
-
-    public function message() : void
-    {
     }
 
     public function title() : string

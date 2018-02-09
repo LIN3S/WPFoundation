@@ -9,16 +9,20 @@
  * file that was distributed with this source code.
  */
 
-namespace LIN3S\WPFoundation\Configuration\Theme;
+declare(strict_types=1);
+
+namespace LIN3S\WPFoundation;
 
 /**
  * @author Beñat Espiña <benatespina@gmail.com>
  */
-abstract class Theme implements ThemeInterface
+abstract class Kernel
 {
+    abstract public function registerClasses() : void;
+
     public function __construct()
     {
-        $this->classes();
+        $this->register();
         $this->xmlrpc();
 
         add_action('admin_head', [$this, 'adminHead']);
@@ -29,9 +33,11 @@ abstract class Theme implements ThemeInterface
         add_filter('timber_context', [$this, 'context']);
     }
 
-    public function context(array $context) : array
+    private function register() : void
     {
-        return $context;
+        $this->registerClasses();
+        new AuthorizationChecker();
+        new Translator();
     }
 
     private function xmlrpc() : void

@@ -9,21 +9,22 @@
  * file that was distributed with this source code.
  */
 
-namespace LIN3S\WPFoundation\Configuration\Menus;
+declare(strict_types=1);
+
+namespace LIN3S\WPFoundation;
 
 /**
- * Abstract class of menus class that implements the interface.
- * This class avoids the use of callbacks in the constructor.
- *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
-abstract class Menus implements MenusInterface
+abstract class Ajax
 {
-    /**
-     * Constructor.
-     */
+    abstract public function ajax() : void;
+
+    abstract protected function action() : string;
+
     public function __construct()
     {
-        add_action('init', [$this, 'menus']);
+        add_action('wp_ajax_nopriv_' . $this->action(), [$this, 'ajax']);
+        add_action('wp_ajax_' . $this->action(), [$this, 'ajax']);
     }
 }

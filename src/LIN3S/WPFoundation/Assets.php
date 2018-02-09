@@ -9,7 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace LIN3S\WPFoundation\Configuration\Assets;
+declare(strict_types=1);
+
+namespace LIN3S\WPFoundation;
 
 /**
  * Abstract class of assets class that implements the interface.
@@ -18,33 +20,26 @@ namespace LIN3S\WPFoundation\Configuration\Assets;
  * @author Beñat Espiña <benatespina@gmail.com>
  * @author Gorka Laucirica <gorka.lauzirika@gmail.com>
  */
-abstract class Assets implements AssetsInterface
+abstract class Assets
 {
+    abstract public function developmentAssets() : void;
+
+    abstract public function productionAssets() : void;
+
+    abstract public function adminAssets() : void;
+
     public function __construct()
     {
-        if (true === WP_DEBUG) {
-            add_action('wp_enqueue_scripts', [$this, 'developmentAssets']);
-        } else {
-            add_action('wp_enqueue_scripts', [$this, 'productionAssets']);
-        }
+        defined('WP_DEBUG') && true === WP_DEBUG
+            ? add_action('wp_enqueue_scripts', [$this, 'developmentAssets'])
+            : add_action('wp_enqueue_scripts', [$this, 'productionAssets']);
+
         add_action('admin_enqueue_scripts', [$this, 'adminAssets']);
-    }
-
-    public function developmentAssets() : void
-    {
-    }
-
-    public function productionAssets() : void
-    {
-    }
-
-    public function adminAssets() : void
-    {
     }
 
     protected function addScript(
         string $name,
-        string $from = AssetsInterface::ASSETS_JS,
+        string $from,
         array $dependencies = ['jquery'],
         string $version = '1.0.0',
         bool $inFooter = true,
@@ -61,7 +56,7 @@ abstract class Assets implements AssetsInterface
 
     protected function addStylesheet(
         string $name,
-        string $from = AssetsInterface::CSS,
+        string $from,
         array $dependencies = [],
         string $version = '1.0.0',
         string $media = 'all'
