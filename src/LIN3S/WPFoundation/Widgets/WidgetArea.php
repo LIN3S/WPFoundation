@@ -9,21 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace LIN3S\WPFoundation\Widgets\Areas;
+declare(strict_types=1);
+
+namespace LIN3S\WPFoundation\Widgets;
 
 /**
- * Abstract class of base widget area that implements the interface.
- * This class avoids the redundant task of create the same WidgetArea constructor.
- *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
-abstract class WidgetArea implements WidgetAreaInterface
+abstract class WidgetArea
 {
-    /**
-     * Constructor.
-     */
+    abstract public function registerSidebar() : void;
+
     public function __construct()
     {
-        add_action('widgets_init', [$this, 'widgetArea']);
+        add_action('widgets_init', [$this, 'registerSidebar']);
     }
 }
