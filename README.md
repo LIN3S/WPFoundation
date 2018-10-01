@@ -1,4 +1,4 @@
-#WordPress Foundation
+# WordPress Foundation
 >Helper classes for building WordPress theme in the LIN3S way
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/9d974f76-3f53-487b-b6ed-92d3b328a450/mini.png)](https://insight.sensiolabs.com/projects/9d974f76-3f53-487b-b6ed-92d3b328a450)
@@ -9,7 +9,7 @@
 [![Latest Stable Version](https://poser.pugx.org/lin3s/wp-foundation/v/stable.svg)](https://packagist.org/packages/lin3s/wp-foundation)
 [![Latest Unstable Version](https://poser.pugx.org/lin3s/wp-foundation/v/unstable.svg)](https://packagist.org/packages/lin3s/wp-foundation)
 
-##Why?
+## Why?
 After implementing several WordPress themes, we built what we think can be considered as best practices building this
 kind of projects in a clean, consistent and fast way: thus was born [LIN3S][1]'s [WordPress Standard Edition][2]. We are
 really happy with it, but there are some tasks that are very repetitive and tedious, furthermore each developer usually
@@ -17,7 +17,7 @@ implements in a different way so, with this library we try to avoid these kind o
 only contains a set of **interfaces** and **abstract classes** (in the future who knows :)) to force all developers to
 follow the same way becoming our code more consistent.
 
-##Installation
+## Installation
 The recommended and the most suitable way to install is through [Composer][3]. Be sure that the tool is installed
 in your system and execute the following command:
 
@@ -25,7 +25,7 @@ in your system and execute the following command:
 $ composer require lin3s/wp-foundation
 ```
 
-##Usage examples
+## Usage examples
 The following code snippets are representative code samples of how can it use this library:
 
 1. Ajax
@@ -48,7 +48,7 @@ The following code snippets are representative code samples of how can it use th
   * [Widget](#widget)
   * [Widget Areas](#widget-areas)
 
-###Ajax
+### Ajax
 ```php
 (...)
 
@@ -73,7 +73,7 @@ final class MyAwesomeAjax extends Ajax
 }
 ```
 
-###ACF
+### ACF
 ACF configuration class, this class is responsible for all the logic about this WordPress plugin. A this moment this
 API only has one method that allows to have seamlessly multiple WYSWYG configuration for this type field used by ACF.
 ```php
@@ -96,7 +96,7 @@ final class Acf extends BaseAcf
 }
 ```
 
-###Assets
+### Assets
 ```php
 (...)
 
@@ -174,7 +174,7 @@ final class ContactMail implements MailInterface
 
 > `MailerInterface` is deprecated and will be removed in v2.0.0. Use wp_mail() directly to send the emails
 
-###Menus
+### Menus
 ```php
 (...)
 
@@ -196,7 +196,7 @@ final class Menus extends BaseMenus
 }
 ```
 
-###Theme
+### Theme
 ```php
 (...)
 
@@ -241,12 +241,12 @@ final class AwesomeTheme extends Theme
 }
 ```
 
-###Translations
+### Translations
 ```php
 \LIN3S\WPFoundation\Configuration\Translations\Translations::trans('Your awesome string');
 ```
 
-###PostType
+### PostType
 ```php
 (...)
 
@@ -357,7 +357,7 @@ final class CustomPostType extends PostType
 }
 ```
 
-###Fields
+### Fields
 ```php
 (...)
 
@@ -427,7 +427,7 @@ final class PageFields extends BasePageFields
 }
 ```
 
-###RewriteRules
+### RewriteRules
 ```php
 (...)
 
@@ -487,7 +487,7 @@ final class CustomRewriteRules extends RewriteRules
 }
 ```
 
-###TagManagerTwig
+### TagManagerTwig
 After instantiate the the `TagManagerTwig` in your theme, you can just call as following:
 ```twig
 (...)
@@ -496,14 +496,14 @@ After instantiate the the `TagManagerTwig` in your theme, you can just call as f
 {% endblock %}
 ```
 
-###TranslationTwig
+### TranslationTwig
 After instantiate the the `TranslationTwig` in your theme, you can just call as following:
 ```twig
 (...)
 {{ trans('Your awesome string') }}
 ```
 
-###Widget
+### Widget
 ```php
 (...)
 
@@ -560,7 +560,7 @@ final class SocialNetworksWidget extends Widget
 }
 ```
 
-###Widget Areas
+### Widget Areas
 ```php
 (...)
 
