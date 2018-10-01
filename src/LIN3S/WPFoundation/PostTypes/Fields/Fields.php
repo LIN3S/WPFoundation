@@ -19,7 +19,7 @@ use LIN3S\WPFoundation\PostTypes\Fields\Components\FieldComponent;
  *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
-abstract class Fields implements FieldsInterface
+class Fields implements FieldsInterface
 {
     /**
      * The template name.
@@ -29,10 +29,30 @@ abstract class Fields implements FieldsInterface
     protected $name;
 
     /**
+     * @var array
+     */
+    private $components;
+
+    /**
+     * @var FieldConnector|null
+     */
+    private $connector;
+
+    /**
      * Constructor.
      */
-    public function __construct()
+    public function __construct(
+        $components = [],
+        $connector = null
+    )
     {
+        if ($connector !== null && !$connector instanceof FieldConnector) {
+            throw new \Exception('Connector must implement FieldConnector');
+        }
+
+        $this->connector = $connector;
+        $this->components = $components;
+
         $this->fields();
         $this->connector();
 
@@ -62,7 +82,19 @@ abstract class Fields implements FieldsInterface
      */
     public function components()
     {
-        return [];
+        return $this->components;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function connector()
+    {
+        if ($this->connector === null) {
+            return [];
+        }
+
+        return $this->connector->connector();
     }
 
     /**

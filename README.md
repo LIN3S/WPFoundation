@@ -247,115 +247,57 @@ final class AwesomeTheme extends Theme
 ```
 
 ### PostType
+
+Declaring a post type is as easy as creating a new instance of `PostType`.
+
 ```php
-(...)
+// src/App/App.php
 
-use LIN3S\WPFoundation\PostTypes\PostType;
-
-final class CustomPostType extends PostType
-{
-    const NAME = 'custom';
-    const TAXONOMY_TYPE_CATEGORY = 'category-customs';
-    const BASE_CUSTOM_URL = 'base-custom-url';
-
-    /**
-     * The category slug.
-     *
-     * @var string
-     */
-    private $category;
-
-    /**
-     * The subcategory slug.
-     *
-     * @var string
-     */
-    private $subcategory;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function postType()
-    {
-        register_post_type(self::NAME,
+class App extends Theme {
+    public function classes() {
+        (...)
+        new PostType(
+            PostTypes::CUSTOM_POST_TYPE,
             [
                 'labels'             => [
-                    'name'          => 'Customs',
-                    'singular_name' => 'Custom'
-                ],
-                'public'             => true,
-                'rewrite'            => [
-                    'slug'       => self::BASE_CUSTOM_URL . '/%custom_category%%custom_subcategory%',
-                    'with_front' => false
+                    'name'          => Translations::trans('Exhibitions'),
+                    'singular_name' => Translations::trans('Exhibition'),
                 ],
                 'has_archive'        => true,
+                'public'             => true,
                 'publicly_queryable' => true,
-                'show_ui'            => true,
                 'query_var'          => true,
-                'capability_type'    => 'post',
+                'show_in_rest'       => true,
+                'show_ui'            => true,
+                'supports'           => ['title', 'editor', 'thumbnail'],
             ]
-        );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function taxonomyType()
-    {
-        register_taxonomy(self::TAXONOMY_TYPE_CATEGORY, self::NAME, [
-            'labels'       => [
-                'name'          => 'Custom categories',
-                'singular_name' => 'Custom category'
-            ],
-            'sort'         => true,
-            'hierarchical' => true,
-            'query_var'    => true
-        ]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function permalink($permalink, $id = 0)
-    {
-        $post = get_post($id);
-        if (is_object($post) && $post->post_type == self::NAME) {
-            $terms = wp_get_object_terms($post->ID, self::TAXONOMY_TYPE_CATEGORY);
-            $this->category = '';
-            $this->subcategory = '';
-            foreach ($terms as $key => $term) {
-                if (0 === $term->parent) {
-                    $this->category = $term->slug;
-                } elseif (0 !== $term->parent) {
-                    $this->subcategory = '/' . $term->slug;
-                }
-            }
-            $permalink = str_replace('%custom_category%', $this->category, $permalink);
-            $permalink = str_replace('%custom_subcategory%', $this->subcategory, $permalink);
-        }
-
-        return $permalink;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function fields()
-    {
-        new YourFields();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function singleSerialize($posType)
-    {
-        (...)
-        
-        return $posType;
+        )
     }
 }
 ```
+
+To add custom fields to a custom post type just create a `Fields` instance:
+
+```php
+// src/App/App.php
+
+class App extends Theme {
+    public function classes() {
+        (...)
+        new Fields(
+            PostTypes::CUSTOM_POST_TYPE,
+            [
+                Fully\Qualified\Namespace\Components\CustomFieldComponent::class,
+            ],
+            new PostTypeFieldConnector(PostTypes::CUSTOM_POST_TYPE)
+            ['editor'],
+            ['comments']
+        );
+    }
+}
+```
+
+
 
 ### Fields
 ```php
@@ -376,30 +318,6 @@ final class CustomFieldComponent extends FieldComponent
             (...)
         ]);
     }
-}
-```
-
-```php
-(...)
-
-use LIN3S\WPFoundation\PostTypes\Fields\CustomPostTypeFields as BaseCustomPostTypeFields;
-
-final class CustomPostTypeFields extends BaseCustomPostTypeFields
-{
-    /**
-     * {@inheritdoc}
-     */
-    private $name = CustomPostType::name;
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function components()
-    {
-        return [
-            'Fully\Qualified\Namespace\Components\CustomFieldComponent',
-        ];
-    ];
 }
 ```
 

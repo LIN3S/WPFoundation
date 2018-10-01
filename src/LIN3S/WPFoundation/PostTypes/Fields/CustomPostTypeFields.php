@@ -17,6 +17,8 @@ namespace LIN3S\WPFoundation\PostTypes\Fields;
  * methods with the common use case.
  *
  * @author Beñat Espiña <benatespina@gmail.com>
+ *
+ * @deprecated since version 1.7, will be removed in 2.0. Use Fields constructor
  */
 abstract class CustomPostTypeFields extends Fields
 {
