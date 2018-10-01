@@ -3,7 +3,7 @@
 /*
  * This file is part of the WPFoundation library.
  *
- * Copyright (c) 2015-2016 LIN3S <info@lin3s.com>
+ * Copyright (c) 2015-present LIN3S <info@lin3s.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -59,7 +59,7 @@ abstract class Theme implements ThemeInterface
 
     /**
      * @deprecated since version 1.6, will be removed in 2.0. Extend the ACF class in your project and instantiate
-     *             inside your project Theme.
+     *             inside your project Theme
      */
     protected function acf()
     {
