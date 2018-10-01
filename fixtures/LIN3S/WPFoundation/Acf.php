@@ -20,9 +20,6 @@ use LIN3S\WPFoundation\Configuration\Acf\Acf as BaseAcf;
  */
 class Acf extends BaseAcf
 {
-    /**
-     * {@inheritdoc}
-     */
     public function wyswygToolbars()
     {
         return [

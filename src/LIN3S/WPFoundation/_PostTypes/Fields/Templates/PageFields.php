@@ -14,17 +14,10 @@ namespace LIN3S\WPFoundation\PostTypes\Fields\Templates;
 use LIN3S\WPFoundation\PostTypes\Fields\Fields;
 
 /**
- * Abstract page fields class that extends the fields basic
- * behaviour, implementing the "connector" and "removeScreenAttributes"
- * methods with the common use case.
- *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
 abstract class PageFields extends Fields
 {
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         parent::__construct();
@@ -45,10 +38,7 @@ abstract class PageFields extends Fields
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function connector()
+    public function connector() : array
     {
         return [
             [
@@ -66,20 +56,14 @@ abstract class PageFields extends Fields
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function removeScreenAttributes()
+    public function removeScreenAttributes() : void
     {
         remove_post_type_support('page', 'comments');
         remove_post_type_support('page', 'custom-fields');
         remove_post_type_support('page', 'editor');
     }
 
-    /**
-     * Callback that adds the meta box.
-     */
-    public function addMetaBox()
+    public function addMetaBox() : void
     {
         add_meta_box(
             'lin3s-id-default-meta-box',
@@ -89,13 +73,7 @@ abstract class PageFields extends Fields
         );
     }
 
-    /**
-     * Callback that prints the meta box.
-     *
-     * @param mixed  $post The post
-     * @param string $box  The box
-     */
-    public function metaBox($post, $box)
+    public function metaBox($post, $box) : void
     {
         echo <<<'EOF'
 <h1 style="text-align: center;">

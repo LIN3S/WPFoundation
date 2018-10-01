@@ -9,49 +9,32 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace LIN3S\WPFoundation\Widgets;
 
 /**
- * Abstract class of base Widget that implements the interface.
- *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
-abstract class Widget extends \WP_Widget implements WidgetInterface
+abstract class Widget extends \WP_Widget
 {
-    /**
-     * Constructor.
-     *
-     * @param string $id          The name id
-     * @param string $name        The name
-     * @param array  $description The description
-     */
-    public function __construct($id, $name, $description)
+    public function __construct(string $id, string $name, string $description)
     {
         parent::__construct($id, $name, ['description' => $description]);
-
-        add_action('widgets_init', [$this, 'register']);
+        add_action('widgets_init', [$this, 'registerWidget']);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function name()
+    public function name() : string
     {
-        return $this->id_base;
+        return (string) $this->id_base;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function number()
+    public function number() : int
     {
-        return $this->number;
+        return (int) $this->number;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function register()
+    public function registerWidget() : void
     {
         register_widget(static::class);
     }

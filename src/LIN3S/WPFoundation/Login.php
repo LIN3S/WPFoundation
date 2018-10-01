@@ -9,19 +9,22 @@
  * file that was distributed with this source code.
  */
 
-namespace LIN3S\WPFoundation\Configuration\Login;
+declare(strict_types=1);
+
+namespace LIN3S\WPFoundation;
 
 /**
- * Base class that offers some method to customize easily WordPress login page.
- *
  * @author Jon Torrado <jontorrado@gmail.com>
  * @author Beñat Espiña <benatespina@gmail.com>
  */
-abstract class Login implements LoginInterface
+abstract class Login
 {
-    /**
-     * Constructor.
-     */
+    abstract public function logoPath() : string;
+
+    abstract public function errors() : void;
+
+    abstract public function message() : void;
+
     public function __construct()
     {
         add_filter('login_errors', [$this, 'errors']);
@@ -31,17 +34,7 @@ abstract class Login implements LoginInterface
         add_filter('login_headerurl', [$this, 'url']);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function errors()
-    {
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function logo()
+    public function logo() : void
     {
         $logoPath = $this->logoPath();
 
@@ -60,25 +53,12 @@ abstract class Login implements LoginInterface
 EOL;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function message()
-    {
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function title()
+    public function title() : string
     {
         return get_bloginfo();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function url()
+    public function url() : string
     {
         return home_url();
     }

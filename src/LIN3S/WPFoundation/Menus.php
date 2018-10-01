@@ -9,18 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace LIN3S\WPFoundation\Configuration\Menus;
+declare(strict_types=1);
+
+namespace LIN3S\WPFoundation;
 
 /**
- * Interface of menus class. This interface forces to register all the menus.
- *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
-interface MenusInterface
+abstract class Menus
 {
-    /**
-     * Registers all the menus.
-     * It's a callback of Wordpress internal "register_nav_menus" method.
-     */
-    public function menus();
+    abstract public function menus() : void;
+
+    public function __construct()
+    {
+        add_action('init', [$this, 'menus']);
+    }
 }

@@ -9,21 +9,22 @@
  * file that was distributed with this source code.
  */
 
-namespace LIN3S\WPFoundation\Widgets\Areas;
+declare(strict_types=1);
+
+namespace LIN3S\WPFoundation;
 
 /**
- * Abstract class of base widget area that implements the interface.
- * This class avoids the redundant task of create the same WidgetArea constructor.
- *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
-abstract class WidgetArea implements WidgetAreaInterface
+abstract class Ajax
 {
-    /**
-     * Constructor.
-     */
+    abstract public function ajax() : void;
+
+    abstract protected function action() : string;
+
     public function __construct()
     {
-        add_action('widgets_init', [$this, 'widgetArea']);
+        add_action('wp_ajax_nopriv_' . $this->action(), [$this, 'ajax']);
+        add_action('wp_ajax_' . $this->action(), [$this, 'ajax']);
     }
 }

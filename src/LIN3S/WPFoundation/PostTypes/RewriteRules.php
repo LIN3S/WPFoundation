@@ -9,19 +9,21 @@
  * file that was distributed with this source code.
  */
 
-namespace LIN3S\WPFoundation\PostTypes\RewriteRules;
+declare(strict_types=1);
+
+namespace LIN3S\WPFoundation\PostTypes;
 
 /**
- * Abstract class of base rewrite rules that implements the interface.
- * This class avoids the redundant task of create the same RewriteRules constructor.
- *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
-abstract class RewriteRules implements RewriteRulesInterface
+abstract class RewriteRules
 {
-    /**
-     * Constructor.
-     */
+    abstract public function addRewriteRules() : void;
+
+    abstract public function addRewriteTags() : void;
+
+    abstract public function templateInclude($template) : string;
+
     public function __construct()
     {
         $this->rewriteRules();

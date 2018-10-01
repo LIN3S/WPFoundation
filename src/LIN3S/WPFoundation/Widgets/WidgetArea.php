@@ -9,21 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace LIN3S\WPFoundation\Configuration\Menus;
+declare(strict_types=1);
+
+namespace LIN3S\WPFoundation\Widgets;
 
 /**
- * Abstract class of menus class that implements the interface.
- * This class avoids the use of callbacks in the constructor.
- *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
-abstract class Menus implements MenusInterface
+abstract class WidgetArea
 {
-    /**
-     * Constructor.
-     */
+    abstract public function registerSidebar() : void;
+
     public function __construct()
     {
-        add_action('init', [$this, 'menus']);
+        add_action('widgets_init', [$this, 'registerSidebar']);
     }
 }
