@@ -27,7 +27,7 @@ class TagManagerTwigSpec extends ObjectBehavior
 
     function it_renders_tag_manager_container()
     {
-        $this->tagManagerFunction('GTM-XXXXXX')->shouldReturn(<<<EOT
+        $this->tagManagerFunction('GTM-XXXXXX')->shouldReturn(<<<'EOT'
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
