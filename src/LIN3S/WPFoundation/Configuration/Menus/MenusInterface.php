@@ -15,12 +15,16 @@ namespace LIN3S\WPFoundation\Configuration\Menus;
  * Interface of menus class. This interface forces to register all the menus.
  *
  * @author Beñat Espiña <benatespina@gmail.com>
+ *
+ * @deprecated since version 1.7, will be removed in 2.0. Use Menus constructor to add the menus
  */
 interface MenusInterface
 {
     /**
      * Registers all the menus.
      * It's a callback of Wordpress internal "register_nav_menus" method.
+     *
+     * @deprecated since version 1.7, will be removed in 2.0. Use Menus constructor to add the menus
      */
     public function menus();
 }
