@@ -175,23 +175,18 @@ final class ContactMail implements MailInterface
 > `MailerInterface` is deprecated and will be removed in v2.0.0. Use wp_mail() directly to send the emails
 
 ### Menus
+
 ```php
-(...)
+// src/App/App.php
 
-use LIN3S\WPFoundation\Configuration\Menus\Menus as BaseMenus;
+use LIN3S\WPFoundation\Configuration\Menus\Menus
 
-final class Menus extends BaseMenus
-{
-    const MENU_AWESOME = 'awesome-menu';
-
-    /**
-     * {@inheritdoc}
-     */
-    public function menus()
-    {
-         register_nav_menus([
-             self::MENU_AWESOME => 'Awesome menu'
-         ]);
+class App extends Theme {
+    public function classes() {
+        (...)
+        new Menus([
+            self::MENU_AWESOME => 'Awesome menu'
+        ]
     }
 }
 ```
