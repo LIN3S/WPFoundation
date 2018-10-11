@@ -15,6 +15,8 @@ namespace LIN3S\WPFoundation\PostTypes;
  * Interface of the base post type. This interface forces to implement some
  * useful methods related with custom post type class, improving the consistency.
  *
+ * @deprecated since version 1.7, will be made private in 2.0. Use PostType class.
+ *
  * @author Beñat Espiña <benatespina@gmail.com>
  * @author Gorka Laucirica <gorka.lauzirika@gmail.com>
  */
@@ -22,6 +24,8 @@ interface PostTypeInterface
 {
     /**
      * Registers required fields by this post type.
+     *
+     * @deprecated since version 1.7, will be removed in 2.0. Use Fields constructor instead.
      */
     public function fields();
 
@@ -39,11 +43,15 @@ interface PostTypeInterface
 
     /**
      * Builds the custom post type calling the WordPress internal "register_post_type" method.
+     *
+     * @deprecated since version 1.7, will be made private in 2.0. Use PostType constructor.
      */
     public function postType();
 
     /**
      * Registers required rewrite rules by this post type.
+     *
+     * @deprecated since version 1.7, will be removed in 2.0. Create a rewrite rules class.
      */
     public function rewriteRules();
 
@@ -53,6 +61,8 @@ interface PostTypeInterface
      * the logic about get the simple fields data without polluting the controller.
      *
      * @param array|object $postTypes The post type or the post types given because can be an object or an array
+     *
+     * @deprecated since version 1.7, will be removed in 2.0. Create a custom serializer class.
      *
      * @return array|object Serialized given post type or post types
      */
@@ -66,6 +76,8 @@ interface PostTypeInterface
      * @param string $url  The url
      * @param string $term The term
      *
+     * @deprecated since version 1.7, will be removed in 2.0. Use Taxonomy constructor.
+     *
      * @return string Customized url
      */
     public function taxonomyPermalink($url, $term);
@@ -73,6 +85,8 @@ interface PostTypeInterface
     /**
      * Only if the post type has a custom taxonomy type too, this method builds
      * the taxonomy type calling the WordPress internal "register_taxonomy" method.
+     *
+     * @deprecated since version 1.7, will be removed in 2.0. Use Taxonomy constructor.
      */
     public function taxonomyType();
 }

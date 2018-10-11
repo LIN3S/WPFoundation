@@ -19,13 +19,22 @@ namespace LIN3S\WPFoundation\PostTypes;
  * @author Beñat Espiña <benatespina@gmail.com>
  * @author Gorka Laucirica <gorka.lauzirika@gmail.com>
  */
-abstract class PostType implements PostTypeInterface
+class PostType implements PostTypeInterface
 {
+    private $name;
+    private $options;
+
     /**
      * Constructor.
+     *
+     * @param string $name
+     * @param array $options
      */
-    public function __construct()
+    public function __construct($name = null, $options = [])
     {
+        $this->name = $name;
+        $this->options = $options;
+
         add_action('init', [$this, 'postType']);
         add_action('init', [$this, 'taxonomyType']);
         add_action('init', [$this, 'fields'], 20);
@@ -88,10 +97,29 @@ abstract class PostType implements PostTypeInterface
      *
      * @param object $postType The post type
      *
+     * @deprecated since version 1.7, will be removed in 2.0. Create a custom serializer class.
+     *
      * @return object Serialized given post type
      */
     protected static function singleSerialize($postType)
     {
         return $postType;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function postType()
+    {
+        if ($this->name !== null && $this->options !== null) {
+            register_post_type($this->name, $this->options);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function taxonomyType()
+    {
     }
 }

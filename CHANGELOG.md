@@ -5,6 +5,15 @@ This changelog references the relevant changes done in 1.0 and its minor version
 To get the diff for a specific change, go to https://github.com/LIN3S/WPFoundation/commit/XXX where XXX is the change hash 
 To get the diff between two versions, go to https://github.com/LIN3S/WPFoundation/compare/v1.0.0...v1.0.1
 
+* 1.7.0
+    * Added new `PostType` constructor to declare new post type without the need to extend `PostType` class.
+    * Added new `Menus` constructor to declare menus without the need to extend `Menus` class.
+    * Added `Taxonomy` class to declare new terms.
+    * Added `Fields` constructor allowing `Connector` usage to declare new fields.
+    * Deprecated extending `PostType` class. Use new `PostType` constructor instead.
+    * Deprecated extending `Menus` class. Use new `Menus` constructor instead.
+    * Deprecated extending `CustomPostTypeFields` class. Use new `Fields` constructor instead.
+    * Deprecated declaring taxonomies in `PostType` class. Use new `Taxonomy` constructor instead.
 * 1.6.2, 1.6.3, 1.6.4
     * Fixed minor typos
 * 1.6.1

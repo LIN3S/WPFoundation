@@ -17,13 +17,27 @@ namespace LIN3S\WPFoundation\Configuration\Menus;
  *
  * @author Beñat Espiña <benatespina@gmail.com>
  */
-abstract class Menus implements MenusInterface
+class Menus implements MenusInterface
 {
+    private $menus;
+
     /**
      * Constructor.
+     *
+     * @param array $menus
      */
-    public function __construct()
+    public function __construct($menus = [])
     {
+        $this->menus = $menus;
+
         add_action('init', [$this, 'menus']);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function menus()
+    {
+        register_nav_menus($this->menus);
     }
 }
