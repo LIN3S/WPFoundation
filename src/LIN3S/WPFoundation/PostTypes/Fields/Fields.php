@@ -42,6 +42,7 @@ class Fields implements FieldsInterface
      * Constructor.
      */
     public function __construct(
+        $name = '',
         $components = [],
         $connector = null
     )
@@ -50,6 +51,7 @@ class Fields implements FieldsInterface
             throw new \Exception('Connector must implement FieldConnector');
         }
 
+        $this->name = $name;
         $this->connector = $connector;
         $this->components = $components;
 
