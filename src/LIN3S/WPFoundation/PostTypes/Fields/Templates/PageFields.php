@@ -27,7 +27,7 @@ abstract class PageFields extends Fields
      */
     public function __construct()
     {
-        parent::__construct();
+        parent::__construct($this->name);
 
         $newPostId = filter_input(INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT);
         $updatePostId = filter_input(INPUT_POST, 'post_ID', FILTER_SANITIZE_NUMBER_INT);
