@@ -18,6 +18,8 @@ namespace LIN3S\WPFoundation\PostTypes\Fields\Components;
  *
  * @author Beñat Espiña <benatespina@gmail.com>
  * @author Gorka Laucirica <gorkalaucirica@gmail.com>
+ *
+ * @deprecated since version 1.8, will be removed in 2.0. Implement FieldComponentInterface::init() instead
  */
 abstract class FieldComponent
 {
@@ -26,12 +28,15 @@ abstract class FieldComponent
      */
     public static function register($aName, $aConnector)
     {
+        trigger_error(
+            'Deprecated register. Use FieldComponentInterface::init() instead',
+            E_USER_DEPRECATED
+        );
         if (method_exists(static::class, 'definition')) {
             $definition = static::definition($aName);
             $definition['location'] = $aConnector;
             acf_add_local_field_group($definition);
         } else {
-            //@deprecated Will be removed in 2.0, and this class will implement FieldComponentInterface
             return new static($aName, $aConnector);
         }
     }
@@ -39,7 +44,7 @@ abstract class FieldComponent
     /**
      * Constructor.
      *
-     * @deprecated since version 1.4, will be removed in 2.0. Implement register() instead
+     * @deprecated since version 1.4, will be removed in 2.0.  Use FieldComponentInterface::init() instead
      */
     protected function __construct()
     {

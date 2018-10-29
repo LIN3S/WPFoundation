@@ -23,6 +23,8 @@ interface FieldComponentInterface
     /**
      * Static naming constructor.
      *
+     * @deprecated since version 1.8, will be removed in 2.0. Use init() instead
+     *
      * @param string $aName      The name
      * @param mixed  $aConnector The connector
      */
@@ -31,9 +33,21 @@ interface FieldComponentInterface
     /**
      * Static component definition.
      *
+     * @deprecated since version 1.8, will be removed in 2.0. Use init() instead
+     *
      * @param string $aName The name of the field
      *
      * @return array with the required ACF field config
      */
     public static function definition($aName);
+
+    /**
+     * Initializes fields for the given component.
+     *
+     * @param string $aName
+     * @param array $aConnector
+     *
+     * @return void
+     */
+    public function init($aName, $aConnector);
 }

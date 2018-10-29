@@ -12,6 +12,7 @@
 namespace LIN3S\WPFoundation\PostTypes\Fields;
 
 use LIN3S\WPFoundation\PostTypes\Fields\Components\FieldComponent;
+use LIN3S\WPFoundation\PostTypes\Fields\Components\FieldComponentInterface;
 
 /**
  * Abstract class of base custom fields that implements the interface.
@@ -58,7 +59,6 @@ class Fields implements FieldsInterface
         $this->components = $components;
 
         $this->fields();
-        $this->connector();
 
         if (false === is_admin()) {
             return;
@@ -71,12 +71,19 @@ class Fields implements FieldsInterface
     public function fields()
     {
         foreach ($this->components() as $component) {
+            if($component instanceof FieldComponentInterface) {
+                return $component->init($this->name, $this->connector());
+            }
             if (false === class_exists($component)) {
                 throw new \Exception(sprintf('The %s class does not exist', $component));
             }
             if ($component instanceof FieldComponent) {
                 throw new \Exception('The %s class must be extend the FieldComponent', $component);
             }
+            trigger_error(
+                'Deprecated usage of FieldComponent::register() method, implement FieldComponentInterface::register
+                method',
+                E_USER_DEPRECATED);
             $component::register($this->name, $this->connector());
         }
     }

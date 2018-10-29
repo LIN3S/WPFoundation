@@ -5,6 +5,10 @@ This changelog references the relevant changes done in 1.0 and its minor version
 To get the diff for a specific change, go to https://github.com/LIN3S/WPFoundation/commit/XXX where XXX is the change hash 
 To get the diff between two versions, go to https://github.com/LIN3S/WPFoundation/compare/v1.0.0...v1.0.1
 
+* 1.8.0
+    * Reworked `Fields` to rely in class methods instead of static ones.
+    * Deprecated static method calls in classes implementing `FieldComponentInterface`.
+    * Deprecated extending abstract `FieldComponent`. Implement `FieldComponentInterface::init()` instead.
 * 1.7.1
     * Fixed issue with FieldComponent declarations not receiving a valid name parameter
     * Added `name()` method to `FieldConnector` interface.

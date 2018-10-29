@@ -271,41 +271,15 @@ class App extends Theme {
 }
 ```
 
-To add custom fields to a custom post type just create a `Fields` instance:
-
-```php
-// src/App/App.php
-
-class App extends Theme {
-    public function classes() {
-        (...)
-        new Fields(
-            PostTypes::CUSTOM_POST_TYPE,
-            [
-                Fully\Qualified\Namespace\Components\CustomFieldComponent::class,
-            ],
-            new PostTypeFieldConnector(PostTypes::CUSTOM_POST_TYPE)
-            ['editor'],
-            ['comments']
-        );
-    }
-}
-```
-
-
-
 ### Fields
 ```php
 (...)
 
-use LIN3S\WPFoundation\PostTypes\Field\FieldComponent;
+use LIN3S\WPFoundation\PostTypes\Field\FieldComponentInterface;
 
-final class CustomFieldComponent extends FieldComponent
+final class CustomFieldComponent implements FieldComponentInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public static function definition($aName)
+    public function init($aName, $aConnector)
     {
         return [
             'key' => sprintf('field_%s_component', $aName),
@@ -316,27 +290,24 @@ final class CustomFieldComponent extends FieldComponent
 }
 ```
 
+To add custom fields to a custom post type just create a `Fields` instance passing the component you just created:
+
 ```php
-(...)
+// src/App/App.php
 
-use LIN3S\WPFoundation\PostTypes\Fields\PageFields as BasePageFields;
-
-final class PageFields extends BasePageFields
-{
-    /**
-     * {@inheritdoc}
-     */
-    private $name = 'my_awesome_template;
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function components()
-    {
-        return [
-            'Fully\Qualified\Namespace\Components\CustomFieldComponent',
-        ];
-    ];
+class App extends Theme {
+    public function classes() {
+        (...)
+        new Fields(
+            [
+                // Before v1.8
+                Fully\Qualified\Namespace\Components\CustomFieldComponent::class,
+                // After v1.8
+                new Fully\Qualified\Namespace\Components\CustomFieldComponent()
+            ],
+            new PostTypeFieldConnector(PostTypes::CUSTOM_POST_TYPE)
+        );
+    }
 }
 ```
 
