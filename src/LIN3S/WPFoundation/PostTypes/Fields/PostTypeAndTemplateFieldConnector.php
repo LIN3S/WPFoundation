@@ -31,4 +31,9 @@ class PostTypeAndTemplateFieldConnector implements FieldConnector
             ],
         ];
     }
+
+    public function name()
+    {
+        return sprintf("%s_%s", $this->postType, $this->template);
+    }
 }

@@ -50,6 +50,10 @@ class Fields implements FieldsInterface
             throw new \Exception('Connector must implement FieldConnector');
         }
 
+        if ($connector !== null && $connector instanceof FieldConnector) {
+            $this->name = $connector->name();
+        }
+
         $this->connector = $connector;
         $this->components = $components;
 

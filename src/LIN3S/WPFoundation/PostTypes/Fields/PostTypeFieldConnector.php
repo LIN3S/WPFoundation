@@ -24,4 +24,9 @@ class PostTypeFieldConnector implements FieldConnector
             ],
         ];
     }
+
+    public function name()
+    {
+        return $this->postType;
+    }
 }

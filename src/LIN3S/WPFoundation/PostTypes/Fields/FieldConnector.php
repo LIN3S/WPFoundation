@@ -9,4 +9,9 @@ interface FieldConnector
      * @return array
      */
     public function connector();
+
+    /**
+     * @return string
+     */
+    public function name();
 }
