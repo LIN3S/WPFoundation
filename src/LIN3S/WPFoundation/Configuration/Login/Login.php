@@ -27,7 +27,7 @@ abstract class Login implements LoginInterface
         add_filter('login_errors', [$this, 'errors']);
         add_action('login_enqueue_scripts', [$this, 'logo']);
         add_filter('login_message', [$this, 'message']);
-        add_filter('login_headertitle', [$this, 'title']);
+        add_filter('login_headertext', [$this, 'title']);
         add_filter('login_headerurl', [$this, 'url']);
     }
 
